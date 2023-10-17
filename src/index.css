@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    @apply font-manrope;
+  }
+  a {
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+  }
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .heading1, .heading2, .heading3, .heading4, .heading5, .heading6, a {
+    @apply font-bold;
+  }
+  .heading1 {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 1.29px;
+  }
+  @screen md {
+    .heading1 {
+      font-size: 56px;
+      line-height: 58px;
+      letter-spacing: 2px;
+    }
+  }
+  .heading2 {
+    font-size: 15px;
+    letter-spacing: 1.07px;
+  }
+  .heading3 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  @screen md {
+    .heading3 {
+      font-size: 40px;
+      line-height: 44px;
+      letter-spacing: 1.43px;
+    }
+  }
+  .heading4 {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  .menu {
+    font-size: 13px;
+    line-height: 25px;
+    letter-spacing: 2px;
+  }
+  .paragraph {
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 500;
+  }
+  .tag {
+    font-size: 14px;
+    letter-spacing: 10px;
+  }
+}
+@layer components {
+  .cta {
+    @apply text-[13px] tracking-[1px] transition-all duration-150 outline-none py-[15px] px-[30px] uppercase;
+  }
+  .cta-orange {
+    @apply bg-orange border-none hover:bg-lightOrange;
+  }
+  .cta-black {
+    @apply bg-black border-none hover:bg-[#4c4c4c];
+  }
+  .cta-transparent {
+    @apply bg-transparent border-[1px] border-black  text-black hover:bg-black hover:text-white;
+  }
+  .menu li {
+    @apply hover:text-orange;
+  }
+  .socials svg:hover path {
+    fill: #D87D4A;
+  }
+}
+@layer utilities {
+  .fadein {
+    animation: slide 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide {
+    0% {
+      transform: translateY(100px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .fadeout {
+    animation: fadeout 0.3s ease-in-out;
+  }
+  @keyframes fadeout {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 100;
+    }
+  }
+  .home-hero-bg {
+    background: url("/src/assets/home/mobile/image-header.jpg") no-repeat center top;
+    background-size: cover;
+  }
+  @screen md {
+    .home-hero-bg {
+      background: url("/src/assets/home/tablet/image-header.jpg") no-repeat bottom center;
+      background-size: cover;
+    }
+  }
+  @screen lg {
+    .home-hero-bg {
+      background: url("/src/assets/home/tablet/image-header.jpg") no-repeat bottom center;
+      background-size: cover;
+    }
+  }
+  @screen xl {
+    .home-hero-bg {
+      background: url("/src/assets/home/desktop/image-hero.jpg") no-repeat bottom center;
+      background-size: cover;
+    }
+  }
+  .zx9-bg {
+    background: #D87D4A url("/src/assets/home/desktop/pattern-circles.svg") no-repeat center top -110px;
+    background-size: cover;
+  }
+  @screen md {
+    .zx9-bg {
+      background: #D87D4A url("/src/assets/home/desktop/pattern-circles.svg") no-repeat center top -180px;
+      background-size: cover;
+    }
+  }
+  @screen xl {
+    .zx9-bg {
+      background: #D87D4A url("/src/assets/home/desktop/pattern-circles.svg") no-repeat left -300px bottom -500px;
+      background-size: cover;
+    }
+  }
+  .zx7-bg {
+    background: #D87D4A url("/src/assets/home/mobile/image-speaker-zx7.jpg") no-repeat bottom right;
+    background-size: cover;
+  }
+  @screen md {
+    .zx7-bg {
+      background: #D87D4A url("/src/assets/home/tablet/image-speaker-zx7.jpg") no-repeat bottom right;
+      background-size: cover;
+    }
+  }
+}/*# sourceMappingURL=index.css.map */
