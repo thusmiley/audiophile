@@ -2,8 +2,7 @@ import { useState } from "react";
 import logo from "../assets/shared/desktop/logo.svg";
 import menu from "../assets/shared/tablet/icon-hamburger.svg";
 import cart from "../assets/shared/desktop/icon-cart.svg";
-import Categories from "./Categories";
-import { CategoryList } from "../data/cardData";
+import CategoryCards from "../components/CategoryCards";
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -23,10 +22,9 @@ const NavBar = () => {
             className={`${
               !toggle ? "hidden" : "flex"
             } z-10 absolute container px-8 mx-auto bg-white top-[90px] left-0 right-0 font-bold flex-col pt-[84px] pb-8 space-y-[52px] items-center text-center rounded-b-[8px] md:px-10 xl:hidden`}
+            onClick={() => setToggle(!toggle)}
           >
-            {CategoryList.map((category) => (
-              <Categories key={category.id} {...category} />
-            ))}
+            <CategoryCards />
           </div>
 
           {/* desktop menu */}

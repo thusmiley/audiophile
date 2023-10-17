@@ -17,8 +17,8 @@ Audiophile website
 
 ### Links
 
-- Git URL: 
-- Live Site URL: 
+- Git URL: https://github.com/thusmiley/audiophile.git
+- Live Site URL: https://audiophile-sable.vercel.app/
 
 ### Built with
 
@@ -28,4 +28,6 @@ Audiophile website
 - CSS Grid
 - Mobile-first workflow
 - Tailwind
+- React router dom
+- Shopping cart and checkout
 - React (Vite)

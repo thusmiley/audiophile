@@ -1,14 +1,11 @@
-import Categories from "../components/Categories";
-import { CategoryList } from "../data/cardData";
+import CategoryCards from "../components/CategoryCards";
 import zx9Mobile from "../assets/home/mobile/image-speaker-zx9.png";
 import zx9Tablet from "../assets/home/tablet/image-speaker-zx9.png";
 import zx9Desktop from "../assets/home/desktop/image-speaker-zx9.png";
 import yx1Mobile from "../assets/home/mobile/image-earphones-yx1.jpg";
 import yx1Tablet from "../assets/home/tablet/image-earphones-yx1.jpg";
 import yx1Desktop from "../assets/home/desktop/image-earphones-yx1.jpg";
-import bestgearMobile from "../assets/shared/mobile/image-best-gear.jpg";
-import bestgearTablet from "../assets/shared/tablet/image-best-gear.jpg";
-import bestgearDesktop from "../assets/shared/desktop/image-best-gear.jpg";
+import Prefooter from "../components/Prefooter";
 
 const Home = () => {
   return (
@@ -32,9 +29,7 @@ const Home = () => {
 
       {/* categories */}
       <section className="container px-8 mx-auto flex flex-col space-y-[52px] text-center pt-[92px] pb-[120px] md:flex-row md:space-y-0 md:space-x-[10px] md:pt-[148px] md:pb-[96px] md:px-10 xl:px-[165px]">
-        {CategoryList.map((category) => (
-          <Categories key={category.id} {...category} />
-        ))}
+        <CategoryCards />
       </section>
 
       {/* featured products */}
@@ -84,27 +79,7 @@ const Home = () => {
       </section>
 
       {/* prefooter */}
-      <section className="my-[120px] md:my-[96px] xl:my-[200px]">
-        <div className="container px-8 mx-auto text-center md:px-10 xl:px-[165px] xl:flex xl:flex-row-reverse xl:justify-between xl:items-center xl:h-[588px]">
-          <picture className="xl:w-1/2">
-            <source media="(max-width: 680px)" srcSet={bestgearMobile} />
-            <source media="(max-width: 1280px)" srcSet={bestgearTablet} />
-            <source media="(min-width: 1281px)" srcSet={bestgearDesktop} />
-            <img src={bestgearMobile} className="h-[300px] w-full object-cover rounded-[8px] xl:h-[588px]" />
-          </picture>
-
-          <div className="md:max-w-[573px] md:mx-auto xl:w-1/2 xl:text-left xl:mr-[125px]">
-            <h2 className="heading3 uppercase mt-10 mb-8 xl:mt-0">
-              Bringing you the <span className="text-orange">best</span> audio gear
-            </h2>
-            <p className="paragraph text-black/50">
-              Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom
-              and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who
-              make Audiophile the best place to buy your portable audio equipment.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Prefooter />
     </div>
   );
 };
