@@ -17,7 +17,7 @@ const Home = () => {
       <section className="pt-[90px] text-white text-center home-hero-bg ">
         <div className="container px-8 mx-auto md:px-10 xl:px-[165px]">
           <div className="hidden md:block w-full h-[1px] bg-white/10" />
-          <div className="pt-[108px] pb-[112px] md:pt-[126px] md:pb-[167px] md:max-w-[379px] md:mx-auto xl:pt-[128px] xl:pb-[158px] xl:text-left xl:ml-0">
+          <div className="pt-[108px] pb-[127px] md:pt-[126px] md:pb-[167px] md:max-w-[379px] md:mx-auto xl:pt-[128px] xl:pb-[158px] xl:text-left xl:ml-0">
             <span className="tag text-white/50">NEW PRODUCT</span>
             <h1 className="heading1 mt-4 mb-6 uppercase md:my-6">XX99 Mark II HeadphoneS</h1>
             <p className="paragraph text-white/75 mb-[43px] md:mb-[55px]">
