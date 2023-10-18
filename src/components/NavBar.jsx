@@ -1,7 +1,7 @@
 import { useState } from "react";
-import logo from "../assets/shared/desktop/logo.svg";
-import menu from "../assets/shared/tablet/icon-hamburger.svg";
-import cart from "../assets/shared/desktop/icon-cart.svg";
+import logo from "../../public/images/shared/desktop/logo.svg";
+import menu from "../../public/images/shared/tablet/icon-hamburger.svg";
+import cart from "../../public/images/shared/desktop/icon-cart.svg";
 import CategoryCards from "../components/CategoryCards";
 
 const NavBar = () => {

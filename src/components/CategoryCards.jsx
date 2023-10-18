@@ -1,6 +1,6 @@
-import earphones from "../assets/shared/desktop/image-category-thumbnail-earphones.png";
-import headphones from "../assets/shared/desktop/image-category-thumbnail-headphones.png";
-import speakers from "../assets/shared/desktop/image-category-thumbnail-speakers.png";
+import earphones from "../../public/images/shared/desktop/image-category-thumbnail-earphones.png";
+import headphones from "../../public/images/shared/desktop/image-category-thumbnail-headphones.png";
+import speakers from "../../public/images/shared/desktop/image-category-thumbnail-speakers.png";
 import CategoryCard from "./CategoryCard";
 
 const CategoryCards = () => {

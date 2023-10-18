@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import arrow from "../assets/shared/desktop/icon-arrow-right.svg";
+import arrow from "../../public/images/shared/desktop/icon-arrow-right.svg";
 
 const CategoryCard = (props) => {
   const { name, img } = props;

@@ -1,10 +1,10 @@
 import CategoryCards from "../components/CategoryCards";
-import zx9Mobile from "../assets/home/mobile/image-speaker-zx9.png";
-import zx9Tablet from "../assets/home/tablet/image-speaker-zx9.png";
-import zx9Desktop from "../assets/home/desktop/image-speaker-zx9.png";
-import yx1Mobile from "../assets/home/mobile/image-earphones-yx1.jpg";
-import yx1Tablet from "../assets/home/tablet/image-earphones-yx1.jpg";
-import yx1Desktop from "../assets/home/desktop/image-earphones-yx1.jpg";
+import zx9Mobile from "../../public/images/home/mobile/image-speaker-zx9.png";
+import zx9Tablet from "../../public/images/home/tablet/image-speaker-zx9.png";
+import zx9Desktop from "../../public/images/home/desktop/image-speaker-zx9.png";
+import yx1Mobile from "../../public/images/home/mobile/image-earphones-yx1.jpg";
+import yx1Tablet from "../../public/images/home/tablet/image-earphones-yx1.jpg";
+import yx1Desktop from "../../public/images/home/desktop/image-earphones-yx1.jpg";
 import Prefooter from "../components/Prefooter";
 
 const Home = () => {
