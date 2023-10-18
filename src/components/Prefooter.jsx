@@ -14,7 +14,7 @@ const Prefooter = () => {
         </picture>
 
         <div className="md:max-w-[573px] md:mx-auto xl:w-1/2 xl:text-left xl:mr-[125px]">
-          <h2 className="heading3 uppercase mt-10 mb-8 xl:mt-0">
+          <h2 className="heading3 uppercase mt-10 mb-8 md:mt-[63px] xl:mt-0">
             Bringing you the <span className="text-orange">best</span> audio gear
           </h2>
           <p className="paragraph text-black/50">

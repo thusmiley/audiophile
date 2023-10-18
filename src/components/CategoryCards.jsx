@@ -5,10 +5,10 @@ import CategoryCard from "./CategoryCard";
 
 const CategoryCards = () => {
   return (
-    <div className="w-full space-y-[68px] flex flex-col justify-center items-center">
-      <CategoryCard name="headphones" img={headphones} />
-      <CategoryCard name="speakers" img={speakers} />
-      <CategoryCard name="earphones" img={earphones} />
+    <div className="w-full space-y-[68px] flex flex-col justify-center items-center md:flex md:flex-row md:space-y-0 md:space-x-[10px]">
+      <CategoryCard name='headphones' img={headphones} />
+      <CategoryCard name='speakers' img={speakers} />
+      <CategoryCard name='earphones' img={earphones} />
     </div>
   );
 };
