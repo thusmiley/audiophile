@@ -119,29 +119,29 @@
     }
   }
   .home-hero-bg {
-    background: url("/src/assets/home/mobile/image-header.jpg") no-repeat center center;
+    background: url("/public/images/home/mobile/image-header.jpg") no-repeat center center;
     background-size: cover;
   }
   @screen md {
     .home-hero-bg {
-      background: url("/src/assets/home/tablet/image-header.jpg") no-repeat center center;
+      background: url("/public/images/home/tablet/image-header.jpg") no-repeat center center;
       background-size: cover;
     }
   }
   @screen lg {
     .home-hero-bg {
-      background: url("/src/assets/home/tablet/image-header.jpg") no-repeat center center;
+      background: url("/public/images/home/tablet/image-header.jpg") no-repeat center center;
       background-size: cover;
     }
   }
   @screen xl {
     .home-hero-bg {
-      background: url("/src/assets/home/desktop/image-hero.jpg") no-repeat center center;
+      background: url("/public/images/home/desktop/image-hero.jpg") no-repeat center center;
       background-size: cover;
     }
   }
   .zx9-bg {
-    background: #D87D4A url("/src/assets/home/desktop/pattern-circles.svg") no-repeat center top -110px;
+    background: #D87D4A url("/public/images/home/desktop/pattern-circles.svg") no-repeat center top -110px;
     background-size: cover;
   }
   @screen md {
@@ -152,17 +152,17 @@
   }
   @screen xl {
     .zx9-bg {
-      background: #D87D4A url("/src/assets/home/desktop/pattern-circles.svg") no-repeat left -300px bottom -500px;
+      background: #D87D4A url("/public/images/home/desktop/pattern-circles.svg") no-repeat left -300px bottom -500px;
       background-size: cover;
     }
   }
   .zx7-bg {
-    background: #D87D4A url("/src/assets/home/mobile/image-speaker-zx7.jpg") no-repeat bottom right;
+    background: #D87D4A url("/public/images/home/mobile/image-speaker-zx7.jpg") no-repeat bottom right;
     background-size: cover;
   }
   @screen md {
     .zx7-bg {
-      background: #D87D4A url("/src/assets/home/tablet/image-speaker-zx7.jpg") no-repeat bottom right;
+      background: #D87D4A url("/public/images/home/tablet/image-speaker-zx7.jpg") no-repeat bottom right;
       background-size: cover;
     }
   }
