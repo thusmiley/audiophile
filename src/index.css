@@ -60,6 +60,17 @@
     font-size: 28px;
     letter-spacing: 2px;
   }
+  .heading5 {
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.86px;
+  }
+  @screen md {
+    .heading5 {
+      font-size: 32px;
+      letter-spacing: 1.14px;
+    }
+  }
   .menu {
     font-size: 13px;
     line-height: 25px;
@@ -117,6 +128,19 @@
     100% {
       opacity: 100;
     }
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-areas: "firstImg thirdImg" "secondImg thirdImg";
+  }
+  .firstImg {
+    grid-area: firstImg;
+  }
+  .secondImg {
+    grid-area: secondImg;
+  }
+  .thirdImg {
+    grid-area: thirdImg;
   }
   .home-hero-bg {
     background: url("/public/images/home/mobile/image-header.jpg") no-repeat center center;
