@@ -15,7 +15,7 @@ const Category = () => {
       <CategoryPageHero title={params.category} />
 
       {/* product cards */}
-      <section className="container px-8 mx-auto flex flex-col-reverse justify-center items-center mt-[64px] mb-[120px] space-y-[120px] space-y-reverse md:px-10 md:mt-[120px] xl:px-[165px]">
+      <section className="container px-8 mx-auto text-center flex flex-col-reverse justify-center items-center mt-[64px] mb-[120px] space-y-[120px] space-y-reverse md:px-10 md:mt-[120px] xl:px-[165px] xl:text-left">
         {category.map((product) => (
           <ProductCard key={product.id} link={`/${params.category}/${product.name.split(` `).join(`-`).toLowerCase()}`} product={product} />
         ))}
