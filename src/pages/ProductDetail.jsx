@@ -18,20 +18,15 @@ const ProductDetail = (props) => {
   }, [category, productName]);
 
   return (
-    <div className="">
-      <div className="h-[90px] bg-black mb-4 md:mb-[33px] xl:mb-[79px]" />
-      <div className="container px-8 mx-auto md:px-10 xl:px-[165px]">
+    <div className="pt-[90px]">
+      {/* product main info */}
+      <section className="container px-8 mx-auto  mt-4 md:px-10 md:mt-[33px] xl:px-[165px] xl:mt-[79px]">
         <a href="" className="paragraph text-black/50 font-medium hover:text-orange">
           Go Back
         </a>
-      </div>
-
-      {/* product main info */}
-      <section className="container px-8 mx-auto md:px-10 xl:px-[165px]">
         <div className="mt-6 md:flex md:flex-row xl:mt-[56px]">
           <ProductCard product={product} detailPage={true} onProductAdd={onProductAdd} onProductQuantityChange={onProductQuantityChange} quantity={quantity} />
         </div>
-
         <div className="xl:flex xl:mt-[160px]">
           {/* features */}
           <div className="my-[88px] md:my-[120px] xl:my-0 xl:w-[60%] xl:mr-[125px]">
@@ -52,7 +47,6 @@ const ProductDetail = (props) => {
             </div>
           </div>
         </div>
-
         {/* gallery*/}
         <div className="mt-[88px] md:mt-[120px] md:gallery-grid md:gap-x-[18px] md:gap-y-5 xl:mt-[160px] xl:gap-x-[30px] xl:gap-y-8">
           <picture className="firstImg">
@@ -76,7 +70,6 @@ const ProductDetail = (props) => {
             <img src={product.gallery?.third.mobile} className="h-[368px] w-full object-cover object-center rounded-[8px] xl:h-full" />
           </picture>
         </div>
-
         {/* you may also like */}
         <div className="mt-[88px] md:mt-[120px] xl:mt-[160px]">
           <h2 className="heading5 text-center mb-10 md:mb-[56px] xl:mb-[64px]">YOU MAY ALSO LIKE</h2>

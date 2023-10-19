@@ -105,6 +105,55 @@
   .socials svg:hover path {
     fill: #D87D4A;
   }
+  input {
+    @apply border-[1px] border-[#cfcfcf] caret-orange rounded-[8px] py-[18px] px-6 mt-[9px] relative;
+    outline: none;
+    width: 100%;
+    -webkit-border-radius: 8px;
+    cursor: pointer;
+  }
+  textarea::-moz-placeholder, input::-moz-placeholder {
+    @apply text-[14px] tracking-[-0.25px] font-bold;
+  }
+  input, textarea, textarea::placeholder, input::placeholder {
+    @apply text-[14px] tracking-[-0.25px] font-bold;
+  }
+  input, textarea {
+    @apply text-black;
+  }
+  input[type=radio] {
+    @apply w-auto mt-0 mr-4;
+  }
+  input:focus, textarea:focus, input:hover, textarea:hover {
+    @apply border-orange;
+  }
+  input::-moz-placeholder, textarea::-moz-placeholder {
+    @apply text-black/40;
+  }
+  input::placeholder, textarea::placeholder {
+    @apply text-black/40;
+  }
+  label, .errorMsg {
+    @apply text-[12px] tracking-[-0.21px];
+  }
+  label {
+    @apply font-bold;
+  }
+  .errorMsg {
+    @apply font-medium text-[#CD2C2C] absolute top-[5px]  right-0 hidden;
+  }
+  .form-input {
+    position: relative;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-transition: background-color 5000000s ease-in-out 0s;
+    transition: background-color 5000000s ease-in-out 0s;
+    -webkit-text-fill-color: #000;
+    background-clip: content-box !important;
+  }
 }
 @layer utilities {
   .fadein {

@@ -1,4 +1,5 @@
 import sample from "../../public/images/cart/image-xx59-headphones.jpg";
+
 const Cart = () => {
   return (
     <div className="bg-white rounded-[8px] pt-8 pb-[46px] px-7 sm:max-w-[377px]">
@@ -16,7 +17,7 @@ const Cart = () => {
               <img src={sample} alt="" className=" object-cover w-[64px] h-[64px] rounded-[8px]" />
             </div>
             <div className="ml-4 mr-5 sm:mr-[61px]">
-              <h4 className="paragraph">XX99 MK II</h4>
+              <h4 className="paragraph font-bold">XX99 MK II</h4>
               <p className="text-[14px] leading-[25px] font-bold text-black/50">$ 2,999</p>
             </div>
           </div>
