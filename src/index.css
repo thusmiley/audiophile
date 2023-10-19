@@ -170,7 +170,7 @@
   }
   @screen md {
     .zx9-bg {
-      background: #D87D4A url("/src/assets/home/desktop/pattern-circles.svg") no-repeat center top -180px;
+      background: #D87D4A url("/public/images/home/desktop/pattern-circles.svg") no-repeat center top -180px;
       background-size: cover;
     }
   }
