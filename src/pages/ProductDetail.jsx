@@ -35,7 +35,7 @@ const ProductDetail = (props) => {
         {/* features */}
         <div className="my-[88px]">
           <h2 className="text-[24px] leading-[36px] tracking-[0.86px] font-bold">FEATURES</h2>
-          <p className="paragraph text-black/50 mt-6">{product.features}</p>
+          <p className="paragraph text-black/50 mt-6 whitespace-pre-line">{product.features}</p>
         </div>
 
         {/* in the box */}
