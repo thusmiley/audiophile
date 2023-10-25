@@ -3,7 +3,6 @@ import logo from "../../public/images/shared/desktop/logo.svg";
 import menu from "../../public/images/shared/tablet/icon-hamburger.svg";
 import cartIcon from "../../public/images/shared/desktop/icon-cart.svg";
 import CategoryCards from "../components/CategoryCards";
-import Cart from "../components/Cart";
 import { ModalContext } from "./modalContext";
 
 const NavBar = (props) => {
@@ -15,7 +14,7 @@ const NavBar = (props) => {
     <header className="z-10 fixed top-0 bg-black w-full py-8 border-b-[1px] border-white/10 md:border-none">
       <div className="mx-auto container px-8 flex flex-row justify-between items-center md:px-10 xl:px-[165px]">
         {/* open/close buttons */}
-        <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left md:w-4 xl:hidden" />
+        <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left md:w-4 xl:hidden" onClick={() => context.toggleModal("navbar")} />
 
         <a href="/" className="w-full md:ml-[42px] xl:ml-0 xl:mr-10">
           <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto md:object-left md:ml-0" />
@@ -52,20 +51,10 @@ const NavBar = (props) => {
         </nav>
 
         {/* cart */}
-        <div className="h-5 w-full relative">
-          <img src={cartIcon} alt="cart" className="h-5 w-full object-contain object-right cursor-pointer" />
-          {cart.length > 0 ? <p className="absolute text-[11px] font-bold text-white top-[-9px] right-0 bg-orange w-4 h-4 text-center rounded-full">{sumQuantity} </p> : null}
+        <div className="h-5 w-full relative" >
+          <img src={cartIcon} alt="cart" className="h-5 w-full object-contain object-right cursor-pointer" onClick={() => context.toggleModal("cart")}/>
+          {cart.length > 0 ? <p className="absolute text-[11px] font-bold text-white top-[-9px] right-0 bg-orange w-4 h-4 text-center rounded-full">{sumQuantity}</p> : null}
         </div>
-
-        {context.show.cart ? (
-          <div onClick={() => context.toggleModal("cart")}>
-            <div className="absolute top-[114px] left-0 right-0 container px-8 mx-auto sm:flex sm:justify-end md:px-10 xl:px-[165px] z-10">
-              <Cart />
-            </div>
-            {/* overlay */}
-            <div className="fixed top-[89px] bottom-0 left-0 right-0 bg-black/40" />
-          </div>
-        ) : null}
       </div>
     </header>
   );
