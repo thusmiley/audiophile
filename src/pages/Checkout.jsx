@@ -2,6 +2,7 @@ import sample from "../../public/images/cart/image-xx59-headphones.jpg";
 import codIcon from "../../public/images/checkout/icon-cash-on-delivery.svg";
 import { React, useState, useEffect } from "react";
 import Confirmation from "../components/Confirmation";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [confirmation, setConfirmation] = useState(false);
@@ -10,12 +11,14 @@ const Checkout = () => {
     setConfirmation(!confirmation);
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="pt-[90px] pb-[97px] bg-almostWhite relative">
       <section className="container px-8 mx-auto  mt-4  md:px-10 md:mt-[33px] xl:px-[165px] xl:mt-[79px]">
-        <a href="" className="paragraph text-black/50 font-medium hover:text-orange">
+        <button href="" className="paragraph text-black/50 font-medium hover:text-orange" onClick={() => navigate(-1)}>
           Go Back
-        </a>
+        </button>
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
@@ -88,7 +91,7 @@ const Checkout = () => {
                   <p className="text-[12px] tracking-[-0.21px] font-bold">Payment Method</p>
                   <div className="mt-[17px] space-y-4 md:mt-0 md:w-1/2">
                     <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
-                      <input type="radio" name="creditcard" id="creditcard" checked className="peer/cc" />
+                      <input type="radio" name="creditcard" id="creditcard" defaultChecked className="peer/cc" />
                       <label htmlFor="creditcard">Credit Card</label>
                     </div>
 
@@ -176,7 +179,7 @@ const Checkout = () => {
         </div>
       </section>
       {/* overlay */}
-      <div className={`${confirmation ? "hidden" : "fixed"} top-0 bottom-0 left-0 right-0 bg-black/40`} onClick={() => setConfirmation(!confirmation)} />
+      <div className={`${!confirmation ? "hidden" : "fixed"} top-0 bottom-0 left-0 right-0 bg-black/40`} onClick={() => setConfirmation(!confirmation)} />
     </div>
   );
 };

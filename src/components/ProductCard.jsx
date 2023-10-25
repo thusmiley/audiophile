@@ -1,8 +1,8 @@
-import { React, useState, useEffect } from "react";
+import Button from "./Button";
+import QuantityButton from "./QuantityButton";
 
 const ProductCard = (props) => {
-  const { link, detailPage = false, onProductAdd = () => {}, onProductQuantityChange, quantity, product } = props;
-  const [productQuantity, setProductQuantity] = useState("1");
+  const { link, detailPage = false, handleAddToCart = () => {}, handleQuantityChange, quantity, product } = props;
 
   return (
     <div
@@ -25,20 +25,10 @@ const ProductCard = (props) => {
         <p className="paragraph text-black/50 mb-[39px] md:max-w-[572px] mx-auto">{product.description}</p>
         {detailPage && <p className="text-[18px] tracking-[1.29px] font-bold mt-[-15px] mb-[46px]">$ {product?.price?.toLocaleString()}</p>}
         <div className="flex items-center space-x-4">
-          {detailPage && (
-            <p className="bg-lightGrey w-[120px] h-12 flex justify-center items-center text-[13px] tracking-[1px] font-bold">
-              <span className="text-black/25 mr-[21px] cursor-pointer hover:text-orange" onClick={() => setProductQuantity(productQuantity--)}>
-                -
-              </span>
-              {productQuantity}
-              <span className="text-black/25 ml-[21px] cursor-pointer hover:text-orange" onClick={() => setProductQuantity(productQuantity++)}>
-                +
-              </span>
-            </p>
-          )}
-          <a href={link} className="cta cta-orange text-white mx-auto cursor-pointer xl:ml-0">
+          {detailPage && <QuantityButton quantity={quantity} handleQuantityChange={handleQuantityChange} />}
+          <Button link={link} onClick={() => handleAddToCart(product)}>
             {detailPage ? "ADD TO CART" : "SEE PRODUCT"}
-          </a>
+          </Button>
         </div>
       </div>
     </div>

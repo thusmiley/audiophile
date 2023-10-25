@@ -4,29 +4,33 @@ import products from "../data/products.json";
 import Prefooter from "../components/Prefooter";
 import CategoryCards from "../components/CategoryCards";
 import ProductCard from "../components/ProductCard";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetail = (props) => {
   const params = useParams();
   const category = products[params.category];
   const productName = params.product;
   const [product, setProduct] = useState({});
-  const { onProductAdd, onProductQuantityChange, quantity } = props;
+  const { handleAddToCart, handleQuantityChange, quantity } = props;
 
   useEffect(() => {
     const currentProduct = category.find((product) => product.name.split(` `).join("-").toLowerCase() === productName);
     setProduct(currentProduct);
   }, [category, productName]);
 
+  const navigate = useNavigate();
+
   return (
     <div className="pt-[90px]">
       {/* product main info */}
       <section className="container px-8 mx-auto  mt-4 md:px-10 md:mt-[33px] xl:px-[165px] xl:mt-[79px]">
-        <a href="" className="paragraph text-black/50 font-medium hover:text-orange">
+        <button href="" className="paragraph text-black/50 font-medium hover:text-orange" onClick={() => navigate(-1)}>
           Go Back
-        </a>
+        </button>
         <div className="mt-6 md:flex md:flex-row xl:mt-[56px]">
-          <ProductCard product={product} detailPage={true} onProductAdd={onProductAdd} onProductQuantityChange={onProductQuantityChange} quantity={quantity} />
+          <ProductCard product={product} detailPage={true} handleAddToCart={handleAddToCart} handleQuantityChange={handleQuantityChange} quantity={quantity} />
         </div>
+
         <div className="xl:flex xl:mt-[160px]">
           {/* features */}
           <div className="my-[88px] md:my-[120px] xl:my-0 xl:w-[60%] xl:mr-[125px]">
@@ -47,6 +51,7 @@ const ProductDetail = (props) => {
             </div>
           </div>
         </div>
+
         {/* gallery*/}
         <div className="mt-[88px] md:mt-[120px] md:gallery-grid md:gap-x-[18px] md:gap-y-5 xl:mt-[160px] xl:gap-x-[30px] xl:gap-y-8">
           <picture className="firstImg">
