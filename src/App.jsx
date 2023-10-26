@@ -20,7 +20,7 @@ function App() {
     const changeId = e.currentTarget.id;
     if (changeId === "increase") {
       setQuantity(quantity + 1);
-    } else if (quantity > 1) {
+    } else if (quantity > 0) {
       setQuantity(quantity - 1);
     }
   };
@@ -76,10 +76,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/:category" element={<Category />} />
-              <Route
-                path="/:category/:product"
-                element={<ProductDetail cart={cart} onAddToCart={handleAddToCart} onQuantityChange={handleQuantityChange} quantity={quantity} />}
-              />
+              <Route path="/:category/:product" element={<ProductDetail cart={cart} onAddToCart={handleAddToCart} onQuantityChange={handleQuantityChange} quantity={quantity} />} />
               <Route path="/checkout" element={<Checkout cart={cart} />} />
             </Routes>
             <Confirmation cart={cart} onRemoveAll={handleRemoveAll} />

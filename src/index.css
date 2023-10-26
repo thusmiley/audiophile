@@ -124,6 +124,9 @@
   input[type=radio] {
     @apply w-5 h-5 mr-4 accent-orange mt-0 ring-[#cfcfcf] valid:ring-[#cfcfcf];
   }
+  input[type=number]::-webkit-inner-spin-button {
+    display: none;
+  }
   input:focus, textarea:focus, input:hover, textarea:hover {
     @apply border-orange;
   }

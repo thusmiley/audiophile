@@ -54,7 +54,7 @@ const NavBar = (props) => {
         {/* cart */}
         <div className="relative w-full">
           <img src={cartIcon} alt="cart" className="h-5 w-full object-contain object-right cursor-pointer" onClick={() => context.toggleModal("cart")} />
-          {cart.length > 0 ? <p className="absolute text-[11px] font-bold text-white top-[-9px] right-0 bg-orange w-4 h-4 text-center rounded-full">{sumQuantity}</p> : null}
+          {cart.length > 0 ? <p className="absolute text-[11px] font-bold text-white top-[-7px] right-[-6px] bg-orange w-4 h-4 text-center rounded-full">{sumQuantity}</p> : null}
         </div>
       </div>
     </header>

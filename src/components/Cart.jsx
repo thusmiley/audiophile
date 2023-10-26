@@ -27,26 +27,26 @@ const Cart = (props) => {
               )}
             </div>
 
-            {cart.map((product, index) => {
-              return (
-                <div key={index} className="my-[31px] space-y-6 fadein">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div>
-                        <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="object-cover w-[64px] h-[64px] rounded-[8px]" />
+              {cart.map((product, index) => {
+                return (
+                  <div key={index} className="my-[31px] space-y-6 fadein ">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div>
+                          <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="object-cover w-[64px] h-[64px] rounded-[8px]" />
+                        </div>
+                        <div className="ml-4 mr-5 sm:mr-[30px]">
+                          <h4 className="paragraph font-bold truncate">{product.name}</h4>
+                          <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
+                        </div>
                       </div>
-                      <div className="ml-4 mr-5 sm:mr-[30px]">
-                        <h4 className="paragraph font-bold truncate">{product.name}</h4>
-                        <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
-                      </div>
+                      <QuantityButton data-index={index} onQuantityChange={onUpdateCart}>
+                        {product.quantity}
+                      </QuantityButton>
                     </div>
-                    <QuantityButton data-index={index} onQuantityChange={onUpdateCart}>
-                      {product.quantity}
-                    </QuantityButton>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
 
             {cart.length > 0 ? (
               <div className="flex items-center justify-between mb-[39px] fadein">

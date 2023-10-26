@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ModalContext } from "../components/modalContext";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useFormik } from "formik";
 
 const Checkout = (props) => {
   const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -14,9 +15,32 @@ const Checkout = (props) => {
   const navigate = useNavigate();
   const context = useContext(ModalContext);
   const { cart } = props;
-  const tax = 0.1;
+  const tax = 0.05;
   const shipping = 50;
   const total = cart?.reduce((sum, product) => sum + product.price * product.quantity, 0);
+
+  // const formValidation = () => {
+  //   context.toggleModal("confirmation");
+  // };
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      zipcode: "",
+      city: "",
+      country: "",
+      cardnum: "",
+      expirydate: "",
+      cvc: "",
+    },
+
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <div className="pt-[90px] pb-[97px] bg-almostWhite relative">
@@ -27,7 +51,7 @@ const Checkout = (props) => {
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form action="">
+          <form id="form-checkout" onSubmit={formik.handleSubmit}>
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
@@ -38,19 +62,28 @@ const Checkout = (props) => {
                 <div className="space-y-6 md:grid md:grid-cols-2 md:space-y-0 md:gap-x-4 md:gap-y-6">
                   <div className="form-input">
                     <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Alexei Ward" required />
+                    <input type="text" name="name" id="name" placeholder="Alexei Ward" required onChange={formik.handleChange} value={formik.values.name} />
                     <p className="errorMsg">Wrong format</p>
                   </div>
 
                   <div className="form-input">
                     <label htmlFor="email">Email Address</label>
-                    <input type="email" name="email" id="email" placeholder="alexei@mail.com" required />
+                    <input type="email" name="email" id="email" placeholder="alexei@mail.com" required onChange={formik.handleChange} value={formik.values.email} />
                     <p className="errorMsg">Wrong format</p>
                   </div>
 
                   <div className="form-input">
                     <label htmlFor="phone">Phone Number</label>
-                    <input type="tel" name="phone" id="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="+1 202-555-0136" required />
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                      placeholder="+1 202-555-0136"
+                      required
+                      onChange={formik.handleChange}
+                      value={formik.values.phone}
+                    />
                     <p className="errorMsg">Wrong format</p>
                   </div>
                 </div>
@@ -63,25 +96,35 @@ const Checkout = (props) => {
                 <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-4 md:gap-y-6">
                   <div className="form-input md:col-span-2">
                     <label htmlFor="address">Your Address</label>
-                    <input type="text" name="address" id="address" placeholder="1137 Williams Avenue" required />
+                    <input type="text" name="address" id="address" placeholder="1137 Williams Avenue" required onChange={formik.handleChange} value={formik.values.address} />
                     <p className="errorMsg">Wrong format</p>
                   </div>
 
                   <div className="form-input">
                     <label htmlFor="zipcode">ZIP Code</label>
-                    <input type="number" name="zipcode" id="zipcode" maxlength="5" pattern="[0-9]{5}" placeholder="10001" required />
+                    <input
+                      type="number"
+                      name="zipcode"
+                      id="zipcode"
+                      maxLength="5"
+                      pattern="[0-9]{5}"
+                      placeholder="10001"
+                      required
+                      onChange={formik.handleChange}
+                      value={formik.values.zipcode}
+                    />
                     <p className="errorMsg">Wrong format</p>
                   </div>
 
                   <div className="form-input">
                     <label htmlFor="city">City</label>
-                    <input type="text" name="city" id="city" placeholder="New York" required />
+                    <input type="text" name="city" id="city" placeholder="New York" required onChange={formik.handleChange} value={formik.values.city} />
                     <p className="errorMsg">Wrong format</p>
                   </div>
 
                   <div className="form-input">
                     <label htmlFor="country">Country</label>
-                    <input type="text" name="country" id="country" placeholder="United States" required />
+                    <input type="text" name="country" id="country" placeholder="United States" required onChange={formik.handleChange} value={formik.values.country} />
                     <p className="errorMsg">Wrong format</p>
                   </div>
                 </div>
@@ -97,7 +140,7 @@ const Checkout = (props) => {
                     <p className="text-[12px] tracking-[-0.21px] font-bold">Payment Method</p>
                     <div className="mt-[17px] space-y-4 md:mt-0 md:w-1/2">
                       <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
-                        <input type="radio" name="payment" id="creditcard" className="peer/cc" checked onClick={() => setPayment("cc")} />
+                        <input type="radio" name="payment" id="creditcard" className="peer/cc" defaultChecked onClick={() => setPayment("cc")} />
                         <span className="custom-radio" />
                         <label htmlFor="creditcard">Credit Card</label>
                       </div>
@@ -126,17 +169,28 @@ const Checkout = (props) => {
                     <div className="space-y-6 md:grid md:grid-cols-5 md:space-y-0 md:gap-x-4">
                       <div className="col-span-2">
                         <label htmlFor="cardnum">Card Number</label>
-                        <input type="tel" name="cardnum" id="cardnum" inputMode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" placeholder="0000 0000 0000 0000" required />
+                        <input
+                          type="tel"
+                          name="cardnum"
+                          id="cardnum"
+                          inputMode="numeric"
+                          pattern="[0-9\s]{13,19}"
+                          maxLength="19"
+                          placeholder="0000 0000 0000 0000"
+                          required
+                          onChange={formik.handleChange}
+                          value={formik.values.cardnum}
+                        />
                       </div>
 
                       <div className="col-span-2">
                         <label htmlFor="expirydate">Expiry Date</label>
-                        <input type="date" name="expirydate" id="expirydate" required />
+                        <input type="date" name="expirydate" id="expirydate" required onChange={formik.handleChange} value={formik.values.expirydate} />
                       </div>
 
                       <div className="col-span-1">
                         <label htmlFor="cvc">CVC</label>
-                        <input type="number" name="cvc" id="cvc" placeholder="000" required />
+                        <input type="number" name="cvc" id="cvc" placeholder="000" required onChange={formik.handleChange} value={formik.values.cvc} />
                       </div>
                     </div>
                   )}
@@ -184,7 +238,7 @@ const Checkout = (props) => {
                 </div>
               </div>
 
-              <button className="cta cta-orange text-white block w-full text-center" onClick={() => context.toggleModal("confirmation")}>
+              <button form="form-checkout" type="submit" className="cta cta-orange text-white block w-full text-center">
                 CONTINUE & PAY
               </button>
             </div>
