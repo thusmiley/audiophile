@@ -5,7 +5,7 @@ import bestgearDesktop from "../../public/images/shared/desktop/image-best-gear.
 const Prefooter = () => {
   return (
     <section className="my-[120px] md:my-[96px] xl:my-[200px]">
-      <div className="container px-8 mx-auto text-center md:px-10 xl:px-[165px] xl:flex xl:flex-row-reverse xl:justify-between xl:items-center xl:h-[588px]">
+      <div className="container px-6 mx-auto text-center md:px-10 xl:px-[165px] xl:flex xl:flex-row-reverse xl:justify-between xl:items-center xl:h-[588px]">
         <picture className="xl:w-1/2">
           <source media="(max-width: 680px)" srcSet={bestgearMobile} />
           <source media="(max-width: 1280px)" srcSet={bestgearTablet} />

@@ -3,7 +3,7 @@ import logo from "../../public/images/shared/desktop/logo.svg";
 const Footer = () => {
   return (
     <footer className="bg-black text-white text-center pt-[52px] pb-[38px] md:pt-[60px] md:pb-[46px] md:text-left xl:pt-[75px]">
-      <div className="container px-8 mx-auto relative md:px-10 xl:px-[165px]">
+      <div className="container px-6 mx-auto relative md:px-10 xl:px-[165px]">
         <div className="h-1 w-[101px] mx-auto bg-orange mt-[-52px] md:float-left md:mt-[-60px] xl:mt-[-75px]" />
         <div className="mt-[52px] md:mt-0 xl:flex xl:justify-between xl:items-center xl:mb-9">
           <a href="/">

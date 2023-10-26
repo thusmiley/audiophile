@@ -82,7 +82,7 @@
 // components
 @layer components
     .cta
-        @apply text-[13px] tracking-[1px] transition-all duration-150 outline-none py-[15px] px-[30px] uppercase
+        @apply text-[13px] tracking-[1px] transition-all duration-150 outline-none py-[15px] px-[30px] uppercase font-bold
 
     .cta-orange
         @apply bg-orange border-none hover:bg-lightOrange
@@ -114,13 +114,19 @@
         @apply text-black
 
     input[type="radio"]
-        @apply w-auto mt-0 mr-4
+        @apply w-5 h-5 mr-4 accent-orange mt-0 ring-[#cfcfcf] valid:ring-[#cfcfcf]
 
     input:focus, textarea:focus, input:hover, textarea:hover
         @apply border-orange
 
     input::placeholder, textarea::placeholder
         @apply text-black/40
+
+    input[type=date]:invalid::-webkit-datetime-edit
+        @apply text-black/40 uppercase
+
+    input[type=date]::-webkit-calendar-picker-indicator
+        display: none
 
     label, .errorMsg
         @apply text-[12px] tracking-[-0.21px] 
@@ -141,6 +147,14 @@
         transition: background-color 5000000s ease-in-out 0s
         -webkit-text-fill-color: #000
         background-clip: content-box !important
+
+    // .custom-radio
+    //     @apply absolute left-6 top-[18px] cursor-pointer w-5 h-5 border-[1px] border-[#cfcfcf] rounded-full 
+
+    // .custom-radio::after
+    //     @apply w-[10px] h-[10px] bg-orange absolute rounded-full top-[50%] left-[50%] opacity-0 
+
+    
     
 // utitlities
 @layer utilities

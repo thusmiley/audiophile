@@ -2,7 +2,7 @@ import Button from "./Button";
 import QuantityButton from "./QuantityButton";
 
 const ProductCard = (props) => {
-  const { link, detailPage = false, handleAddToCart = () => {}, handleQuantityChange, quantity, product } = props;
+  const { link, detailPage = false, onAddToCart = () => {}, onQuantityChange, quantity, product } = props;
 
   return (
     <div
@@ -25,8 +25,8 @@ const ProductCard = (props) => {
         <p className="paragraph text-black/50 mb-[39px] md:max-w-[572px] mx-auto">{product.description}</p>
         {detailPage && <p className="text-[18px] tracking-[1.29px] font-bold mt-[-15px] mb-[46px]">$ {product?.price?.toLocaleString()}</p>}
         <div className="flex items-center space-x-4">
-          {detailPage && <QuantityButton quantity={quantity} handleQuantityChange={handleQuantityChange} />}
-          <Button link={link} onClick={() => handleAddToCart(product)}>
+          {detailPage && <QuantityButton quantity={quantity} onQuantityChange={onQuantityChange} />}
+          <Button link={link} onClick={() => onAddToCart(product)}>
             {detailPage ? "ADD TO CART" : "SEE PRODUCT"}
           </Button>
         </div>

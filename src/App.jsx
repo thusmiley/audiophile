@@ -14,6 +14,7 @@ import { ModalProvider } from "./components/modalContext";
 function App() {
   const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = useState([]);
+  const [rerender, setRerender] = useState(false);
 
   const handleQuantityChange = (e) => {
     const changeId = e.currentTarget.id;
@@ -30,19 +31,37 @@ function App() {
     });
 
     if (duplicate) {
-      const productUpdate = cart.find((item) => {
+      const productToUpdate = cart.find((item) => {
         return item.name === product.name;
       });
-      productUpdate.quantity = quantity;
+      productToUpdate.quantity = quantity;
     } else {
       setCart((prevCart) => [...prevCart, { ...product, quantity: quantity }]);
     }
     setQuantity(1);
   };
 
-  const updateCart = (e) => {};
+  const handleUpdateCart = (e) => {
+    const changeId = e.currentTarget.id;
+    const indexNum = Number(e.currentTarget.dataset.index);
 
-  const removeAll = () => {};
+    const productToUpdate = cart.find((product, index) => index === indexNum);
+
+    if (changeId === "increase") {
+      productToUpdate.quantity += 1;
+      setRerender(!rerender);
+    } else if (productToUpdate.quantity !== 0) {
+      productToUpdate.quantity -= 1;
+      setRerender(!rerender);
+    }
+    setCart(cart.filter((product) => product.quantity !== 0));
+  };
+
+  const handleRemoveAll = (cart) => {
+    if (cart.length > 0) {
+      setCart([]);
+    }
+  };
 
   return (
     <BrowserRouter>
@@ -51,7 +70,7 @@ function App() {
         <div>
           <header>
             <NavBar cart={cart} />
-            <Cart cart={cart} removeAll={removeAll} updateCart={updateCart} />
+            <Cart cart={cart} onRemoveAll={handleRemoveAll} onUpdateCart={handleUpdateCart} />
           </header>
           <main>
             <Routes>
@@ -59,11 +78,11 @@ function App() {
               <Route path="/:category" element={<Category />} />
               <Route
                 path="/:category/:product"
-                element={<ProductDetail cart={cart} handleAddToCart={handleAddToCart} handleQuantityChange={handleQuantityChange} quantity={quantity} />}
+                element={<ProductDetail cart={cart} onAddToCart={handleAddToCart} onQuantityChange={handleQuantityChange} quantity={quantity} />}
               />
               <Route path="/checkout" element={<Checkout cart={cart} />} />
             </Routes>
-            <Confirmation cart={cart} removeAll={removeAll} />
+            <Confirmation cart={cart} onRemoveAll={handleRemoveAll} />
           </main>
           <footer>
             <Footer />

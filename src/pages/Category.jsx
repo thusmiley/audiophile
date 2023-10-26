@@ -15,13 +15,13 @@ const Category = () => {
       <CategoryPageHero title={params.category} />
 
       {/* product cards */}
-      <section className="container px-8 mx-auto text-center flex flex-col-reverse justify-center items-center mt-[64px] mb-[120px] space-y-[120px] space-y-reverse md:px-10 md:mt-[120px] xl:px-[165px] xl:text-left">
+      <section className="container px-6 mx-auto text-center flex flex-col-reverse justify-center items-center mt-[64px] mb-[120px] space-y-[120px] space-y-reverse md:px-10 md:mt-[120px] xl:px-[165px] xl:text-left">
         {category.map((product) => (
           <ProductCard key={product.id} link={`/${params.category}/${product.name.split(` `).join(`-`).toLowerCase()}`} product={product} />
         ))}
       </section>
 
-      <div className="mt-[172px] container px-8 mx-auto md:px-10 xl:px-[165px]">
+      <div className="mt-[172px] container px-6 mx-auto md:px-10 xl:px-[165px]">
         <CategoryCards />
       </div>
 

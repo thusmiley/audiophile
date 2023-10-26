@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       {/* hero */}
       <section className="pt-[90px] text-white text-center home-hero-bg ">
-        <div className="container px-8 mx-auto md:px-10 xl:px-[165px]">
+        <div className="container px-6 mx-auto md:px-10 xl:px-[165px]">
           <div className="hidden md:block w-full h-[1px] bg-white/10" />
           <div className="pt-[108px] pb-[127px] md:pt-[126px] md:pb-[167px] md:max-w-[379px] md:mx-auto xl:pt-[128px] xl:pb-[158px] xl:text-left xl:ml-0">
             <span className="tag text-white/50">NEW PRODUCT</span>
@@ -28,13 +28,13 @@ const Home = () => {
       </section>
 
       {/* categories */}
-      <section className="container px-8 mx-auto flex flex-col space-y-[52px] text-center pt-[92px] pb-[120px] md:flex-row md:space-y-0 md:space-x-[10px] md:pt-[148px] md:pb-[96px] md:px-10 xl:px-[165px]">
+      <section className="container px-6 mx-auto flex flex-col space-y-[52px] text-center pt-[92px] pb-[120px] md:flex-row md:space-y-0 md:space-x-[10px] md:pt-[148px] md:pb-[96px] md:px-10 xl:px-[165px]">
         <CategoryCards />
       </section>
 
       {/* featured products */}
       <section>
-        <div className="container px-8 mx-auto text-center space-y-6 md:space-y-8 md:px-10 xl:px-[165px]">
+        <div className="container px-6 mx-auto text-center space-y-6 md:space-y-8 md:px-10 xl:px-[165px]">
           {/* zx9 speaker */}
           <div className="zx9-bg px-6 py-[55px] rounded-[8px] text-white md:pb-[79px] md:pt-[52px] xl:flex xl:justify-center xl:items-center xl:pb-[124px] xl:pt-[133px] xl:overflow-hidden">
             <picture className="xl:w-[60%]">

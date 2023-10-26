@@ -12,18 +12,18 @@ const NavBar = (props) => {
 
   return (
     <header className="z-10 fixed top-0 bg-black w-full py-8 border-b-[1px] border-white/10 md:border-none">
-      <div className="mx-auto container px-8 flex flex-row justify-between items-center md:px-10 xl:px-[165px]">
+      <div className="mx-auto container px-6 flex flex-row justify-between items-center md:px-10 xl:px-[165px]">
         {/* open/close buttons */}
-        <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left md:w-4 xl:hidden" onClick={() => context.toggleModal("navbar")} />
+          <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left xl:hidden" onClick={() => context.toggleModal("navbar")} />
 
-        <a href="/" className="w-full md:ml-[42px] xl:ml-0 xl:mr-10">
-          <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto md:object-left md:ml-0" />
+        <a href="/" className="w-full">
+          <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto xl:object-left" />
         </a>
         <nav>
           {/* mobile, tablet menu */}
           {context.show.navbar ? (
             <div
-              className="flex z-10 absolute container px-8 mx-auto bg-white top-[90px] left-0 right-0 font-bold flex-col pt-[84px] pb-8 space-y-[52px] items-center text-center rounded-b-[8px] md:px-10 xl:hidden"
+              className="flex z-10 absolute container px-6 mx-auto bg-white top-[90px] left-0 right-0 font-bold flex-col pt-[84px] pb-8 space-y-[52px] items-center text-center rounded-b-[8px] md:px-10 xl:hidden"
               onClick={() => context.toggleModal("navbar")}
             >
               <CategoryCards />
@@ -51,8 +51,8 @@ const NavBar = (props) => {
         </nav>
 
         {/* cart */}
-        <div className="h-5 w-full relative" >
-          <img src={cartIcon} alt="cart" className="h-5 w-full object-contain object-right cursor-pointer" onClick={() => context.toggleModal("cart")}/>
+        <div className="relative w-full">
+          <img src={cartIcon} alt="cart" className="h-5 w-full object-contain object-right cursor-pointer" onClick={() => context.toggleModal("cart")} />
           {cart.length > 0 ? <p className="absolute text-[11px] font-bold text-white top-[-9px] right-0 bg-orange w-4 h-4 text-center rounded-full">{sumQuantity}</p> : null}
         </div>
       </div>

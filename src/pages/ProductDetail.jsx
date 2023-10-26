@@ -11,7 +11,7 @@ const ProductDetail = (props) => {
   const category = products[params.category];
   const productName = params.product;
   const [product, setProduct] = useState({});
-  const { handleAddToCart, handleQuantityChange, quantity } = props;
+  const { onAddToCart, onQuantityChange, quantity } = props;
 
   useEffect(() => {
     const currentProduct = category.find((product) => product.name.split(` `).join("-").toLowerCase() === productName);
@@ -23,12 +23,12 @@ const ProductDetail = (props) => {
   return (
     <div className="pt-[90px]">
       {/* product main info */}
-      <section className="container px-8 mx-auto  mt-4 md:px-10 md:mt-[33px] xl:px-[165px] xl:mt-[79px]">
+      <section className="container px-6 mx-auto  mt-4 md:px-10 md:mt-[33px] xl:px-[165px] xl:mt-[79px]">
         <button href="" className="paragraph text-black/50 font-medium hover:text-orange" onClick={() => navigate(-1)}>
           Go Back
         </button>
         <div className="mt-6 md:flex md:flex-row xl:mt-[56px]">
-          <ProductCard product={product} detailPage={true} handleAddToCart={handleAddToCart} handleQuantityChange={handleQuantityChange} quantity={quantity} />
+          <ProductCard product={product} detailPage={true} onAddToCart={onAddToCart} onQuantityChange={onQuantityChange} quantity={quantity} />
         </div>
 
         <div className="xl:flex xl:mt-[160px]">
@@ -101,7 +101,7 @@ const ProductDetail = (props) => {
         </div>
       </section>
 
-      <div className="mt-[172px] container px-8 mx-auto md:px-10 xl:px-[165px] xl:mt-[240px]">
+      <div className="mt-[172px] container px-6 mx-auto md:px-10 xl:px-[165px] xl:mt-[240px]">
         <CategoryCards />
       </div>
 
