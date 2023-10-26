@@ -4,6 +4,7 @@ import products from "../data/products.json";
 import Prefooter from "../components/Prefooter";
 import CategoryCards from "../components/CategoryCards";
 import ProductCard from "../components/ProductCard";
+import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
 const ProductDetail = (props) => {
@@ -92,9 +93,9 @@ const ProductDetail = (props) => {
 
                 <h3 className="uppercase text-[24px] tracking-[1.71px] font-bold mt-8 mb-[47px]">{item.name}</h3>
 
-                <a href={`/${item.category}/${item.slug}`} className="cta cta-orange text-white">
+                <Button to={`/${item.category}/${item.slug}`} className="cta cta-orange text-white">
                   SEE PRODUCT
-                </a>
+                </Button>
               </div>
             ))}
           </div>

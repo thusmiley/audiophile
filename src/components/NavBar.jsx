@@ -4,6 +4,7 @@ import menu from "../../public/images/shared/tablet/icon-hamburger.svg";
 import cartIcon from "../../public/images/shared/desktop/icon-cart.svg";
 import CategoryCards from "../components/CategoryCards";
 import { ModalContext } from "./modalContext";
+import { NavLink, Link } from "react-router-dom";
 
 const NavBar = (props) => {
   const { cart } = props;
@@ -14,11 +15,11 @@ const NavBar = (props) => {
     <header className="z-10 fixed top-0 bg-black w-full py-8 border-b-[1px] border-white/10 md:border-none">
       <div className="mx-auto container px-6 flex flex-row justify-between items-center md:px-10 xl:px-[165px]">
         {/* open/close buttons */}
-          <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left xl:hidden" onClick={() => context.toggleModal("navbar")} />
+        <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left xl:hidden" onClick={() => context.toggleModal("navbar")} />
 
-        <a href="/" className="w-full">
+        <Link to="/" className="w-full">
           <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto xl:object-left" />
-        </a>
+        </Link>
         <nav>
           {/* mobile, tablet menu */}
           {context.show.navbar ? (
@@ -31,20 +32,20 @@ const NavBar = (props) => {
           ) : null}
 
           {/* desktop menu */}
-          <ul className="hidden xl:flex menu justify-start items-center space-x-[34px] text-white">
-            <li>
-              <a href="/">HOME</a>
-            </li>
-            <li>
-              <a href="/headphones">HEADPHONES</a>
-            </li>
-            <li>
-              <a href="/speakers">SPEAKERS</a>
-            </li>
-            <li>
-              <a href="/earphones">EARPHONES</a>
-            </li>
-          </ul>
+          <div className="hidden xl:flex justify-start items-center space-x-[34px] text-white">
+            <NavLink to="/" className="menu">
+              HOME
+            </NavLink>
+            <NavLink to="/headphones" className="menu">
+              HEADPHONES
+            </NavLink>
+            <NavLink to="/speakers" className=" menu">
+              SPEAKERS
+            </NavLink>
+            <NavLink to="/earphones" className="menu">
+              EARPHONES
+            </NavLink>
+          </div>
 
           {/* overlay */}
           {context.show.navbar ? <div className="fixed top-[90px] bottom-0 left-0 right-0 bg-black/40 xl:hidden" onClick={() => context.toggleModal("navbar")} /> : null}

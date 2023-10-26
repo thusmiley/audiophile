@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import QuantityButton from "./QuantityButton";
 import { ModalContext } from "./modalContext";
+import Button from "./Button";
 
 const Cart = (props) => {
   const { cart, onRemoveAll, onUpdateCart } = props;
@@ -55,9 +56,9 @@ const Cart = (props) => {
             ) : null}
 
             {cart.length > 0 ? (
-              <a href="/checkout" className="cta cta-orange text-white block w-full text-center fadein" onClick={() => context.toggleModal("cart")}>
+              <Button link="/checkout" onClick={() => context.toggleModal("cart")}>
                 CHECKOUT
-              </a>
+              </Button>
             ) : (
               <p className="paragraph uppercase font-bold text-orange text-center tracking-[1px] mt-[31px] fadein">Your cart is empty.</p>
             )}

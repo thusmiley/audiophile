@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import check from "../../public/images/checkout/icon-order-confirmation.svg";
 import { ModalContext } from "./modalContext";
+import Button from "./Button";
 
 const Confirmation = (props) => {
   const { cart, onRemoveAll } = props;
@@ -57,9 +58,9 @@ const Confirmation = (props) => {
               </div>
             </div>
 
-            <a href="/" className="cta cta-orange block w-full text-white text-center"  onClick={() => {context.toggleModal("confirmation"); onRemoveAll(cart);}} >
+            <Button to="/" className="cta cta-orange block w-full text-white text-center"  onClick={() => {context.toggleModal("confirmation"); onRemoveAll(cart);}} >
               BACK TO HOME
-            </a>
+            </Button>
           </div>
         </div>
       </>

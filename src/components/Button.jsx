@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Button = (props) => {
   const { link = "#", children, ...rest } = props;
   return (
-      <a href={link} className="cta cta-orange text-white mx-auto cursor-pointer xl:ml-0" {...rest}>
-        {children}
-      </a>
+    <Link to={link} className="cta cta-orange text-white mx-auto block text-center cursor-pointer xl:ml-0" {...rest}>
+      {children}
+    </Link>
   );
 };
 

@@ -6,6 +6,7 @@ import yx1Mobile from "../../public/images/home/mobile/image-earphones-yx1.jpg";
 import yx1Tablet from "../../public/images/home/tablet/image-earphones-yx1.jpg";
 import yx1Desktop from "../../public/images/home/desktop/image-earphones-yx1.jpg";
 import Prefooter from "../components/Prefooter";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,9 +21,9 @@ const Home = () => {
             <p className="paragraph text-white/75 mb-[43px] md:mb-[55px]">
               Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
             </p>
-            <a href="/headphones/xx99-mark-ii-headphones" className="cta cta-orange">
+            <Link to="/headphones/xx99-mark-ii-headphones" className="cta cta-orange">
               See Product
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -46,18 +47,18 @@ const Home = () => {
             <div className="md:max-w-[349px] md:mx-auto xl:w-[40%] xl:max-w-full xl:text-left xl:mx-[95px] 2xl:ml-[125px]">
               <h2 className="heading1 mt-8 mb-6 md:mt-[64px]">ZX9 SPEAKER</h2>
               <p className="paragraph mb-10 text-white/75 md:mb-[55px]">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-              <a href="/speakers/zx9-speaker" className="cta cta-black text-white">
+              <Link to="/speakers/zx9-speaker" className="cta cta-black text-white">
                 SEE PRODUCT
-              </a>
+              </Link>
             </div>
           </div>
 
           {/* zx7 speaker */}
           <div className="zx7-bg px-6 py-[101px] rounded-[8px] text-black text-left md:px-[62px] xl:px-[95px]">
             <h2 className="heading4 mb-[47px]">ZX7 SPEAKER</h2>
-            <a href="/speakers/zx7-speaker" className="cta cta-transparent">
+            <Link to="/speakers/zx7-speaker" className="cta cta-transparent">
               SEE PRODUCT
-            </a>
+            </Link>
           </div>
 
           {/* yx1 earphones */}
@@ -70,9 +71,9 @@ const Home = () => {
             </picture>
             <div className="mt-6 bg-lightGrey rounded-[8px] pt-10 pb-[56px] px-6 text-left md:mt-0 md:py-[101px] md:h-[320px] md:px-[52px] md:w-1/2 xl:px-[95px]">
               <h2 className="heading4 mb-[47px]">YX1 EARPHONES</h2>
-              <a href="/earphones/yx1-wireless-earphones" className="cta cta-transparent">
+              <Link to="/earphones/yx1-wireless-earphones" className="cta cta-transparent">
                 SEE PRODUCT
-              </a>
+              </Link>
             </div>
           </div>
         </div>

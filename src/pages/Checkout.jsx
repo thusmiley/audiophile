@@ -14,7 +14,7 @@ const Checkout = (props) => {
   const navigate = useNavigate();
   const context = useContext(ModalContext);
   const { cart } = props;
-  const tax = 0.2;
+  const tax = 0.1;
   const shipping = 50;
   const total = cart?.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
