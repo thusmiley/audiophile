@@ -149,7 +149,7 @@
     @apply font-bold;
   }
   .errorMsg {
-    @apply font-medium text-[#CD2C2C] absolute top-[5px]  right-0 hidden;
+    @apply font-medium text-[#CD2C2C] absolute top-[5px]  right-0;
   }
   .form-input {
     position: relative;
