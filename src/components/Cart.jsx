@@ -36,7 +36,7 @@ const Cart = (props) => {
                           <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="object-cover w-[64px] h-[64px] rounded-[8px]" />
                         </div>
                         <div className="ml-4 mr-5 sm:mr-[30px]">
-                          <h4 className="paragraph font-bold truncate">{product.name}</h4>
+                          <h4 className="paragraph font-bold truncate max-w-[76px] md:max-w-[95px]">{product.name}</h4>
                           <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
                         </div>
                       </div>
