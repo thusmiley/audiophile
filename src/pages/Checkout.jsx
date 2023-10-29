@@ -7,11 +7,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useFormik } from "formik";
 
 const Checkout = (props) => {
-  const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
-  const options = {
-    clientSecret: "{{CLIENT_SECRET}}",
-  };
-  const [payment, setPayment] = useState("cc");
+  // const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+  // const options = {
+  //   clientSecret: "{{CLIENT_SECRET}}",
+  // };
   const navigate = useNavigate();
   const context = useContext(ModalContext);
   const { cart } = props;
@@ -239,13 +238,11 @@ const Checkout = (props) => {
                     <div className="mt-[17px] space-y-4 md:mt-0 md:w-1/2">
                       <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
                         <input type="radio" name="payment" id="creditcard" onChange={formik.handleChange} onBlur={formik.handleBlur} value="creditcard" />
-                        <span className="custom-radio" />
                         <label htmlFor="creditcard">Credit Card</label>
                       </div>
 
                       <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
                         <input type="radio" name="payment" id="cod" onChange={formik.handleChange} onBlur={formik.handleBlur} value="cod" />
-                        <span className="custom-radio" />
                         <label htmlFor="cod">Cash on Delivery</label>
                       </div>
                     </div>
@@ -343,7 +340,7 @@ const Checkout = (props) => {
               <button
                 form="form-checkout"
                 type="submit"
-                disabled={!formik.isValid || (!formik.dirty && formik.values.payment === "")}
+                disabled={!(formik.isValid && formik.dirty && formik.values.payment !== "")}
                 className="cta cta-orange text-white block w-full text-center"
                 onClick={() => context.toggleModal("confirmation")}
               >

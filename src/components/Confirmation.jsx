@@ -19,7 +19,7 @@ const Confirmation = (props) => {
   if (context.show.confirmation) {
     return (
       <>
-        <div className="fixed top-[89px] bottom-0 left-0 right-0 bg-black/70 z-10" onClick={() => context.toggleModal("confirmation")} />
+        <div className="fixed top-[89px] bottom-0 left-0 right-0 bg-black/70 z-10"/>
 
         <div className="container px-6 mx-auto md:px-10 fixed top-[150px] left-0 right-0 z-10">
           <div className="bg-white rounded-[8px] p-8 md:mx-auto md:p-[48px] md:max-w-[620px]">

@@ -114,7 +114,11 @@
         @apply text-black
 
     input[type="radio"]
-        @apply w-5 h-5 mr-4 accent-orange mt-0 ring-[#cfcfcf] valid:ring-[#cfcfcf]
+        @apply w-5 h-5 mr-4 accent-orange mt-0 border-[1px] border-[#cfcfcf] p-[5px] rounded-full bg-white checked:bg-orange checked:border-[#cfcfcf]
+        -webkit-appearance: none
+        appearance: none
+        background-clip: content-box
+
 
     input[type="number"]::-webkit-inner-spin-button 
         display: none
