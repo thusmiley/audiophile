@@ -140,6 +140,9 @@
   input::placeholder, textarea::placeholder {
     @apply text-black/40;
   }
+  input[type=date] {
+    @apply bg-white;
+  }
   input[type=date]:invalid::-webkit-datetime-edit {
     @apply text-black/40 uppercase appearance-none;
   }
