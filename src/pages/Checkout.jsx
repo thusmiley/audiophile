@@ -112,7 +112,7 @@ const Checkout = (props) => {
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form id="form-checkout" onSubmit={formik.handleSubmit} noValidate>
+          <form onSubmit={formik.handleSubmit}>
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
@@ -133,7 +133,7 @@ const Checkout = (props) => {
                       onBlur={formik.handleBlur}
                       value={formik.values.name}
                     />
-                    {formik.touched.name && formik.errors.name ? <div className="errorMsg">{formik.errors.name}</div> : null}
+                    {formik.errors.name ? <div className="errorMsg">{formik.errors.name}</div> : null}
                   </div>
 
                   <div className="form-input">
@@ -148,7 +148,7 @@ const Checkout = (props) => {
                       onBlur={formik.handleBlur}
                       value={formik.values.email}
                     />
-                    {formik.touched.email && formik.errors.email ? <div className="errorMsg">{formik.errors.email}</div> : null}
+                    {formik.errors.email ? <div className="errorMsg">{formik.errors.email}</div> : null}
                   </div>
 
                   <div className="form-input">
@@ -163,7 +163,7 @@ const Checkout = (props) => {
                       onBlur={formik.handleBlur}
                       value={formik.values.phone}
                     />
-                    {formik.touched.phone && formik.errors.phone ? <div className="errorMsg">{formik.errors.phone}</div> : null}
+                    {formik.errors.phone ? <div className="errorMsg">{formik.errors.phone}</div> : null}
                   </div>
                 </div>
               </div>
@@ -185,7 +185,7 @@ const Checkout = (props) => {
                       onBlur={formik.handleBlur}
                       value={formik.values.address}
                     />
-                    {formik.touched.address && formik.errors.address ? <div className="errorMsg">{formik.errors.address}</div> : null}
+                    {formik.errors.address ? <div className="errorMsg">{formik.errors.address}</div> : null}
                   </div>
 
                   <div className="form-input">
@@ -201,13 +201,13 @@ const Checkout = (props) => {
                       onBlur={formik.handleBlur}
                       value={formik.values.zipcode}
                     />
-                    {formik.touched.zipcode && formik.errors.zipcode ? <div className="errorMsg">{formik.errors.zipcode}</div> : null}
+                    {formik.errors.zipcode ? <div className="errorMsg">{formik.errors.zipcode}</div> : null}
                   </div>
 
                   <div className="form-input">
                     <label htmlFor="city">City</label>
                     <input type="text" name="city" id="city" placeholder="New York" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.city} />
-                    {formik.touched.city && formik.errors.city ? <div className="errorMsg">{formik.errors.city}</div> : null}
+                    {formik.errors.city ? <div className="errorMsg">{formik.errors.city}</div> : null}
                   </div>
 
                   <div className="form-input">
@@ -222,7 +222,7 @@ const Checkout = (props) => {
                       onBlur={formik.handleBlur}
                       value={formik.values.country}
                     />
-                    {formik.touched.country && formik.errors.country ? <div className="errorMsg">{formik.errors.country}</div> : null}
+                    {formik.errors.country ? <div className="errorMsg">{formik.errors.country}</div> : null}
                   </div>
                 </div>
               </div>
@@ -277,77 +277,76 @@ const Checkout = (props) => {
                           onBlur={formik.handleBlur}
                           value={formik.values.cardnum}
                         />
-                        {formik.touched.cardnum && formik.errors.cardnum ? <div className="errorMsg">{formik.errors.cardnum}</div> : null}
+                        {formik.errors.cardnum ? <div className="errorMsg">{formik.errors.cardnum}</div> : null}
                       </div>
 
                       <div className="col-span-2">
                         <label htmlFor="expirydate">Expiry Date</label>
                         <input type="date" name="expirydate" id="expirydate" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.expirydate} />
-                        {formik.touched.expirydate && formik.errors.expirydate ? <div className="errorMsg">{formik.errors.expirydate}</div> : null}
+                        {formik.errors.expirydate ? <div className="errorMsg">{formik.errors.expirydate}</div> : null}
                       </div>
 
                       <div className="col-span-1">
                         <label htmlFor="cvc">CVC</label>
                         <input type="number" name="cvc" id="cvc" placeholder="000" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.cvc} />
-                        {formik.touched.cvc && formik.errors.cvc ? <div className="errorMsg">{formik.errors.cvc}</div> : null}
+                        {formik.errors.cvc ? <div className="errorMsg">{formik.errors.cvc}</div> : null}
                       </div>
                     </div>
                   )}
                 </div>
               </div>
             </div>
-
-            {/* summary */}
-            <div className="mt-8 bg-white pt-6 py-[31px] px-6 rounded-[8px] w-full md:p-8 xl:py-[54px] xl:px-[48px] xl:mt-[56px]">
-              <h2 className="text-[18px] tracking-[1.29px] font-bold">SUMMARY</h2>
-
-              <div className="mt-[31px] space-y-6">
-                {cart.map((product, index) => {
-                  return (
-                    <div key={index} className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="w-[64px] h-[64px] rounded-[8px] object-cover mr-4" />
-                        <div>
-                          <p className="paragraph font-bold">{product.name}</p>
-                          <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
-                        </div>
-                      </div>
-                      <p className="paragraph font-bold text-black/50">x{product.quantity}</p>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="mt-8 mb-[47px]">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="paragraph font-medium text-black/50">TOTAL</p>
-                  <p className="text-[18px] font-bold">$ {total.toLocaleString()}</p>
-                </div>
-                <div className="flex items-center justify-between mb-2">
-                  <p className="paragraph font-medium text-black/50">SHIPPING</p>
-                  <p className="text-[18px] font-bold">$ {shipping}</p>
-                </div>
-                <div className="flex items-center justify-between mb-6">
-                  <p className="paragraph font-medium text-black/50">TAXES (INCLUDED)</p>
-                  <p className="text-[18px] font-bold">$ {(tax * total).toLocaleString()}</p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <p className="paragraph font-medium text-black/50">GRAND TOTAL</p>
-                  <p className="text-[18px] font-bold text-orange">$ {(total + shipping).toLocaleString()}</p>
-                </div>
-              </div>
-
-              <button
-                form="form-checkout"
-                type="submit"
-                disabled={!(formik.isValid && formik.dirty && formik.values.payment !== "")}
-                className="cta cta-orange text-white block w-full text-center"
-                onClick={() => context.toggleModal("confirmation")}
-              >
-                CONTINUE & PAY
-              </button>
-            </div>
           </form>
+
+          {/* summary */}
+          <div className="mt-8 bg-white pt-6 py-[31px] px-6 rounded-[8px] w-full md:p-8 xl:py-[54px] xl:px-[48px] xl:mt-[56px]">
+            <h2 className="text-[18px] tracking-[1.29px] font-bold">SUMMARY</h2>
+
+            <div className="mt-[31px] space-y-6">
+              {cart.map((product, index) => {
+                return (
+                  <div key={index} className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="w-[64px] h-[64px] rounded-[8px] object-cover mr-4" />
+                      <div>
+                        <p className="paragraph font-bold">{product.name}</p>
+                        <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
+                      </div>
+                    </div>
+                    <p className="paragraph font-bold text-black/50">x{product.quantity}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 mb-[47px]">
+              <div className="flex items-center justify-between mb-2">
+                <p className="paragraph font-medium text-black/50">TOTAL</p>
+                <p className="text-[18px] font-bold">$ {total.toLocaleString()}</p>
+              </div>
+              <div className="flex items-center justify-between mb-2">
+                <p className="paragraph font-medium text-black/50">SHIPPING</p>
+                <p className="text-[18px] font-bold">$ {shipping}</p>
+              </div>
+              <div className="flex items-center justify-between mb-6">
+                <p className="paragraph font-medium text-black/50">TAXES (INCLUDED)</p>
+                <p className="text-[18px] font-bold">$ {(tax * total).toLocaleString()}</p>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="paragraph font-medium text-black/50">GRAND TOTAL</p>
+                <p className="text-[18px] font-bold text-orange">$ {(total + shipping).toLocaleString()}</p>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={!(formik.isValid && formik.dirty && formik.values.payment !== "")}
+              className="cta cta-orange text-white block w-full text-center"
+              onClick={() => context.toggleModal("confirmation")}
+            >
+              CONTINUE & PAY
+            </button>
+          </div>
         </div>
       </section>
     </div>

@@ -141,7 +141,7 @@
     @apply text-black/40;
   }
   input[type=date]:invalid::-webkit-datetime-edit {
-    @apply text-black/40 uppercase;
+    @apply text-black/40 uppercase appearance-none;
   }
   input[type=date]::-webkit-calendar-picker-indicator {
     display: none;
