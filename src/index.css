@@ -141,9 +141,9 @@
     @apply text-black/40;
   }
   input[type=date] {
-    @apply bg-white;
+    @apply bg-white py-[18px] px-6;
   }
-  input[type=date]:invalid::-webkit-datetime-edit {
+  input[type=date]::-webkit-datetime-edit {
     @apply text-black/40 uppercase appearance-none;
   }
   input[type=date]::-webkit-calendar-picker-indicator {
