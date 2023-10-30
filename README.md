@@ -30,4 +30,5 @@ Audiophile website
 - Tailwind
 - React router dom
 - Shopping cart and checkout
+- Formik form
 - React (Vite)
