@@ -128,9 +128,9 @@
         @apply text-black/40
 
     input[type=date]
-        @apply bg-white py-[18px] px-6
+        @apply bg-white py-[18px] px-6 text-black
 
-    input[type=date]::-webkit-datetime-edit
+    input[type=date]:invalid::-webkit-datetime-edit
         @apply text-black/40 uppercase appearance-none
 
     input[type=date]::-webkit-calendar-picker-indicator

@@ -7,10 +7,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useFormik } from "formik";
 
 const Checkout = (props) => {
-  // const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
-  // const options = {
-  //   clientSecret: "{{CLIENT_SECRET}}",
-  // };
+//   const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+  //   const options = {
+  //     clientSecret: "{{CLIENT_SECRET}}",
+  //   };
   const navigate = useNavigate();
   const context = useContext(ModalContext);
   const { cart } = props;
@@ -23,7 +23,7 @@ const Checkout = (props) => {
     if (!values.name) {
       errors.name = "Required";
     } else if (values.name.length > 40) {
-      errors.name = "Must be 50 characters or less";
+      errors.name = "Must be 40 characters or less";
     }
 
     if (!values.email) {
@@ -78,9 +78,8 @@ const Checkout = (props) => {
     if (!values.cvc) {
       errors.cvc = "Required";
     } else if (!/^[0-9]{3,4}$/.test(values.cvc)) {
-      errors.cvc = "Invalid expiry date";
+      errors.cvc = "Invalid number";
     }
-
     return errors;
   };
 
@@ -94,6 +93,7 @@ const Checkout = (props) => {
       city: "",
       country: "",
       cardnum: "",
+      payment: "",
       expirydate: "",
       cvc: "",
     },
@@ -112,7 +112,7 @@ const Checkout = (props) => {
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form action="" onSubmit={formik.handleSubmit} noValidate>
+          <form action="" onSubmit={formik.handleSubmit}>
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
@@ -237,7 +237,7 @@ const Checkout = (props) => {
                     <p className="text-[12px] tracking-[-0.21px] font-bold">Payment Method</p>
                     <div className="mt-[17px] space-y-4 md:mt-0 md:w-1/2">
                       <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
-                        <input type="radio" name="payment" id="creditcard" onChange={formik.handleChange} onBlur={formik.handleBlur} value="creditcard" />
+                        <input type="radio" name="payment" id="creditcard" onChange={formik.handleChange} onBlur={formik.handleBlur} value="creditcard" required />
                         <label htmlFor="creditcard">Credit Card</label>
                       </div>
 
@@ -268,9 +268,6 @@ const Checkout = (props) => {
                           type="tel"
                           name="cardnum"
                           id="cardnum"
-                          inputMode="numeric"
-                          pattern="[0-9\s]{13,19}"
-                          maxLength="19"
                           placeholder="0000 0000 0000 0000"
                           required
                           onChange={formik.handleChange}
@@ -340,9 +337,8 @@ const Checkout = (props) => {
 
             <button
               type="submit"
-              disabled={!(formik.isValid && formik.dirty && formik.values.payment !== undefined)}
               className="cta cta-orange text-white block w-full text-center"
-              onClick={() => context.toggleModal("confirmation")}
+                onClick={(formik.values.payment === "creditcard" || formik.values.payment === "cod") ? () => context.toggleModal("confirmation") : null}
             >
               CONTINUE & PAY
             </button>
