@@ -112,7 +112,7 @@ const Checkout = (props) => {
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form action="" onSubmit={formik.handleSubmit}>
+          <form action="" onSubmit={formik.handleSubmit} className="xl:w-[65%]">
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
@@ -296,7 +296,7 @@ const Checkout = (props) => {
           </form>
 
           {/* summary */}
-          <div className="mt-8 bg-white pt-6 py-[31px] px-6 rounded-[8px] w-full md:p-8 xl:py-[54px] xl:px-[48px] xl:mt-[56px]">
+          <div className="mt-8 bg-white pt-6 py-[31px] px-6 rounded-[8px] w-full md:p-8  xl:py-[54px] xl:px-[48px] xl:mt-[56px] xl:w-[35%]">
             <h2 className="text-[18px] tracking-[1.29px] font-bold">SUMMARY</h2>
 
             <div className="mt-[31px] space-y-6">
@@ -306,7 +306,7 @@ const Checkout = (props) => {
                     <div className="flex items-center">
                       <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="w-[64px] h-[64px] rounded-[8px] object-cover mr-4" />
                       <div>
-                        <p className="paragraph font-bold">{product.name}</p>
+                        <p className="paragraph font-bold truncate max-w-[76px]">{product.name}</p>
                         <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
                       </div>
                     </div>
