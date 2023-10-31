@@ -9,15 +9,15 @@ const ModalProvider = (props) => {
     setShow((prevState) => ({ [modal]: !prevState[modal] }));
   };
 
-  const hideModal = (e) => {
-    if ((e?.key === "Escape" && show.cart) || show.confirmation) {
+  const keyHideModal = (event) => {
+    if ((event?.key === "Escape" && show.cart) || show.confirmation) {
       setShow((prevState) => ({ [modal]: false }));
     }
   };
 
   return (
     <div>
-      <ModalContext.Provider value={{ show, toggleModal, hideModal }}>{props.children}</ModalContext.Provider>
+      <ModalContext.Provider value={{ show, toggleModal, keyHideModal }}>{props.children}</ModalContext.Provider>
     </div>
   );
 };

@@ -14,6 +14,7 @@ const Cart = (props) => {
       <>
         {/* overlay */}
         <div className="fixed top-[89px] bottom-0 left-0 right-0 bg-black/70 z-10" onClick={() => context.toggleModal("cart")} />
+        
         <div className="fixed top-[114px] left-0 right-0 container px-6 mx-auto sm:flex sm:justify-end md:px-10 xl:px-[165px] z-10">
           <div className="bg-white rounded-[8px] pt-8 pb-[46px] px-7 sm:min-w-[377px]">
             <div className="flex justify-between items-center fadein">
