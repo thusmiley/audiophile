@@ -19,7 +19,9 @@ const NavBar = (props) => {
           to="/"
           className="w-full"
           onClick={() => {
-            context.setShow(false);
+            context.toggleModal("cart");
+            context.toggleModal("confirmation");
+            context.toggleModal("navbar");
           }}
         >
           <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto xl:object-left" />
@@ -30,7 +32,9 @@ const NavBar = (props) => {
             to="/"
             className="menu"
             onClick={() => {
-              context.setShow(false);
+              context.toggleModal("cart");
+              context.toggleModal("confirmation");
+              context.toggleModal("navbar");
             }}
           >
             HOME
@@ -39,16 +43,20 @@ const NavBar = (props) => {
             to="/headphones"
             className="menu"
             onClick={() => {
-              context.setShow(false);
+              context.toggleModal("cart");
+              context.toggleModal("confirmation");
+              context.toggleModal("navbar");
             }}
           >
             HEADPHONES
           </NavLink>
           <NavLink
             to="/speakers"
-            className=" menu"
+            className="menu"
             onClick={() => {
-              context.setShow(false);
+              context.toggleModal("cart");
+              context.toggleModal("confirmation");
+              context.toggleModal("navbar");
             }}
           >
             SPEAKERS
@@ -57,7 +65,9 @@ const NavBar = (props) => {
             to="/earphones"
             className="menu"
             onClick={() => {
-              context.setShow(false);
+              context.toggleModal("cart");
+              context.toggleModal("confirmation");
+              context.toggleModal("navbar");
             }}
           >
             EARPHONES
