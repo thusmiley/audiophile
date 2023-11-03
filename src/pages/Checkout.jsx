@@ -7,7 +7,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useFormik } from "formik";
 
 const Checkout = (props) => {
-//   const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+  //   const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
   //   const options = {
   //     clientSecret: "{{CLIENT_SECRET}}",
   //   };
@@ -69,10 +69,16 @@ const Checkout = (props) => {
       errors.cardnum = "Invalid card number";
     }
 
-    if (!values.expirydate) {
-      errors.expirydate = "Required";
-    } else if (!/^(1[0-2]|0[0-9])(\d)$/g.test(values.expirydate)) {
-      errors.expirydate = "Invalid expiry date";
+    if (!values.expirymonth) {
+      errors.expirymonth = "Required";
+    } else if (!/^01|02|03|04|05|06|07|08|09|10|11|12$/.test(values.expirymonth)) {
+      errors.expirymonth = "Invalid month";
+    }
+
+    if (!values.expiryyear) {
+      errors.expiryyear = "Required";
+    } else if (!/^(2[3-9])$/.test(values.expiryyear)) {
+      errors.expiryyear = "Invalid year";
     }
 
     if (!values.cvc) {
@@ -94,7 +100,8 @@ const Checkout = (props) => {
       country: "",
       cardnum: "",
       payment: "",
-      expirydate: "",
+      expirymonth: "",
+      expiryyear: "",
       cvc: "",
     },
     validate,
@@ -236,12 +243,12 @@ const Checkout = (props) => {
                   <div className="md:flex md:justify-between md:items-start">
                     <p className="text-[12px] tracking-[-0.21px] font-bold">Payment Method</p>
                     <div className="mt-[17px] space-y-4 md:mt-0 md:w-1/2">
-                      <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
+                      <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange md:ml-2">
                         <input type="radio" name="payment" id="creditcard" onChange={formik.handleChange} onBlur={formik.handleBlur} value="creditcard" required />
                         <label htmlFor="creditcard">Credit Card</label>
                       </div>
 
-                      <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange">
+                      <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange  md:ml-2">
                         <input type="radio" name="payment" id="cod" onChange={formik.handleChange} onBlur={formik.handleBlur} value="cod" />
                         <label htmlFor="cod">Cash on Delivery</label>
                       </div>
@@ -261,8 +268,8 @@ const Checkout = (props) => {
 
                   {/* credit card group */}
                   {formik.values.payment === "creditcard" && (
-                    <div className="space-y-6 md:grid md:grid-cols-5 md:space-y-0 md:gap-x-4">
-                      <div className="col-span-2">
+                    <div className="space-y-6 md:flex md:space-y-0 md:space-x-4">
+                      <div className="md:w-1/2">
                         <label htmlFor="cardnum">Card Number</label>
                         <input
                           type="tel"
@@ -277,16 +284,44 @@ const Checkout = (props) => {
                         {formik.touched.cardnum && formik.errors.cardnum ? <div className="errorMsg">{formik.errors.cardnum}</div> : null}
                       </div>
 
-                      <div className="col-span-2">
-                        <label htmlFor="expirydate">Expiry Date</label>
-                        <input type="date" name="expirydate" id="expirydate" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.expirydate} />
-                        {formik.touched.expirydate && formik.errors.expirydate ? <div className="errorMsg">{formik.errors.expirydate}</div> : null}
-                      </div>
+                      <div className="flex items-end space-x-4 md:w-1/2 xl:space-x-2 2xl:space-x-4">
+                        <div className="w-1/2 md:w-[65%]">
+                          <label htmlFor="expirymonth">Expiry Date (MM/YY)</label>
+                          <div className="flex space-x-4 xl:space-x-2 2xl:space-x-4">
+                            <input
+                              type="number"
+                              name="expirymonth"
+                              id="date"
+                              placeholder="MM"
+                              minLength={2}
+                              maxLength={2}
+                              required
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                              value={formik.values.expirymonth}
+                            />
+                            {formik.touched.expirymonth && formik.errors.expirymonth ? <div className="errorMsg">{formik.errors.expirymonth}</div> : null}
+                            <input
+                              type="number"
+                              name="expiryyear"
+                              id="date"
+                              placeholder="YY"
+                              minLength={2}
+                              maxLength={2}
+                              required
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                              value={formik.values.expiryyear}
+                            />
+                            {formik.touched.expiryyear && formik.errors.expiryyear ? <div className="errorMsg">{formik.errors.expiryyear}</div> : null}
+                          </div>
+                        </div>
 
-                      <div className="col-span-1">
-                        <label htmlFor="cvc">CVC</label>
-                        <input type="number" name="cvc" id="cvc" placeholder="000" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.cvc} />
-                        {formik.touched.cvc && formik.errors.cvc ? <div className="errorMsg">{formik.errors.cvc}</div> : null}
+                        <div className="w-1/2 md:w-[35%]">
+                          <label htmlFor="cvc">CVC</label>
+                          <input type="number" name="cvc" id="cvc" placeholder="000" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.cvc} />
+                          {formik.touched.cvc && formik.errors.cvc ? <div className="errorMsg">{formik.errors.cvc}</div> : null}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -306,7 +341,7 @@ const Checkout = (props) => {
                     <div className="flex items-center">
                       <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="w-[64px] h-[64px] rounded-[8px] object-cover mr-4" />
                       <div>
-                        <p className="paragraph font-bold truncate max-w-[76px]">{product.name}</p>
+                        <p className="paragraph font-bold truncate max-w-[120px] md:max-w-full xl:max-w-[100px] 2xl:max-w-full">{product.name}</p>
                         <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
                       </div>
                     </div>
@@ -338,7 +373,7 @@ const Checkout = (props) => {
             <button
               type="submit"
               className="cta cta-orange text-white block w-full text-center"
-                onClick={(formik.values.payment === "creditcard" || formik.values.payment === "cod") ? () => context.toggleModal("confirmation") : null}
+              onClick={formik.values.payment === "creditcard" || formik.values.payment === "cod" ? () => context.toggleModal("confirmation") : null}
             >
               CONTINUE & PAY
             </button>
