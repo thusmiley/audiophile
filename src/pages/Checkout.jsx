@@ -5,6 +5,7 @@ import { ModalContext } from "../components/modalContext";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useFormik } from "formik";
+import ScrollToFirstError from "../components/ScrollToFirstError";
 
 const Checkout = (props) => {
   //   const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -119,7 +120,8 @@ const Checkout = (props) => {
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form action="" onSubmit={formik.handleSubmit} className="xl:w-[65%]">
+          <form autoComplete="on" onSubmit={formik.handleSubmit} className="xl:w-[65%]">
+            {/* <ScrollToFirstError /> */}
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
@@ -285,13 +287,13 @@ const Checkout = (props) => {
                       </div>
 
                       <div className="flex items-end space-x-4 md:w-1/2 xl:space-x-2 2xl:space-x-4">
-                        <div className="w-1/2 md:w-[65%]">
+                        <div className="w-[65%]">
                           <label htmlFor="expirymonth">Expiry Date (MM/YY)</label>
                           <div className="flex space-x-4 xl:space-x-2 2xl:space-x-4">
                             <input
                               type="number"
                               name="expirymonth"
-                              id="date"
+                              id="expirymonth"
                               placeholder="MM"
                               minLength={2}
                               maxLength={2}
@@ -304,7 +306,7 @@ const Checkout = (props) => {
                             <input
                               type="number"
                               name="expiryyear"
-                              id="date"
+                              id="expiryyear"
                               placeholder="YY"
                               minLength={2}
                               maxLength={2}
@@ -317,7 +319,7 @@ const Checkout = (props) => {
                           </div>
                         </div>
 
-                        <div className="w-1/2 md:w-[35%]">
+                        <div className="w-[35%]">
                           <label htmlFor="cvc">CVC</label>
                           <input type="number" name="cvc" id="cvc" placeholder="000" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.cvc} />
                           {formik.touched.cvc && formik.errors.cvc ? <div className="errorMsg">{formik.errors.cvc}</div> : null}
