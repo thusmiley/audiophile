@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ModalContext } from "../components/modalContext";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useFormik } from "formik";
+import { useFormik} from "formik";
 import ScrollToFirstError from "../components/ScrollToFirstError";
 
 const Checkout = (props) => {
@@ -121,7 +121,7 @@ const Checkout = (props) => {
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
           <form autoComplete="on" onSubmit={formik.handleSubmit} className="xl:w-[65%]">
-            {/* <ScrollToFirstError /> */}
+            <ScrollToFirstError />
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
