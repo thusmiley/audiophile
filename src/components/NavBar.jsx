@@ -15,15 +15,13 @@ const NavBar = (props) => {
     context.toggleModal("cart");
     context.toggleModal("confirmation");
     context.toggleModal("navbar");
-  }
+  };
 
   return (
     <header className="z-10 fixed top-0 bg-black w-full py-8 border-b-[1px] border-white/10 md:border-none">
       <nav className="mx-auto container px-6 flex flex-row justify-between items-center md:px-10 xl:px-[165px]">
         <img src={menu} alt="menu" className="cursor-pointer h-[15px] w-full object-contain object-left xl:hidden" onClick={() => context.toggleModal("navbar")} />
-        <Link to="/" className="w-full" onClick={removeModals}>
-          <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto xl:object-left" />
-        </Link>
+        <img src={logo} alt="logo" className="object-contain object-center h-[25px] w-full mx-auto xl:object-left" />
         {/* desktop menu */}
         <div className="hidden xl:flex justify-start items-center space-x-[34px] text-white">
           <NavLink to="/" className="menu" onClick={removeModals}>

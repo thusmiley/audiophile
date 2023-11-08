@@ -375,7 +375,9 @@ const Checkout = (props) => {
             <button
               type="submit"
               className="cta cta-orange text-white block w-full text-center"
-              onClick={formik.values.payment === "creditcard" || formik.values.payment === "cod" ? () => context.toggleModal("confirmation") : null}
+              onClick={
+                (formik.values.payment === "creditcard" || formik.values.payment === "cod") && formik.isValid && formik.dirty ? () => context.toggleModal("confirmation") : null
+              }
             >
               CONTINUE & PAY
             </button>
