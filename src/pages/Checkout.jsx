@@ -28,9 +28,7 @@ const Checkout = (props) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    if (cart.length > 0 && errors.length < 1) {
-      context.toggleModal("confirmation");
-    }
+    context.toggleModal("confirmation");
   };
 
   return (
@@ -40,10 +38,9 @@ const Checkout = (props) => {
           Go Back
         </button>
 
-        <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[65%]">
-            <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
+          <form onSubmit={handleSubmit(onSubmit)} className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
+            <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px] xl:w-[65%]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
               {/* billing details */}
@@ -251,7 +248,7 @@ const Checkout = (props) => {
                                 required: "Required",
                                 pattern: {
                                   value: /^01|02|03|04|05|06|07|08|09|10|11|12$/,
-                                  message: "Invalid month",
+                                  message: "Invalid",
                                 },
                               })}
                             />
@@ -264,7 +261,7 @@ const Checkout = (props) => {
                                 required: "Required",
                                 pattern: {
                                   value: /^(2[3-9])$/,
-                                  message: "Invalid year",
+                                  message: "Invalid",
                                 },
                               })}
                             />
@@ -282,7 +279,7 @@ const Checkout = (props) => {
                               required: "Required",
                               pattern: {
                                 value: /^[0-9]{3,4}$/,
-                                message: "Invalid number",
+                                message: "Invalid",
                               },
                             })}
                           />
@@ -294,53 +291,52 @@ const Checkout = (props) => {
                 </div>
               </div>
             </div>
-          </form>
 
-          {/* summary */}
-          <div className="mt-8 bg-white pt-6 py-[31px] px-6 rounded-[8px] w-full md:p-8  xl:py-[54px] xl:px-[48px] xl:mt-[56px] xl:w-[35%]">
-            <h2 className="text-[18px] tracking-[1.29px] font-bold">SUMMARY</h2>
+            {/* summary */}
+            <div className="mt-8 bg-white pt-6 py-[31px] px-6 rounded-[8px] w-full md:p-8  xl:py-[54px] xl:px-[48px] xl:mt-[56px] xl:w-[35%]">
+              <h2 className="text-[18px] tracking-[1.29px] font-bold">SUMMARY</h2>
 
-            <div className="mt-[31px] space-y-6">
-              {cart.map((product, index) => {
-                return (
-                  <div key={index} className="flex justify-between items-center">
-                    <div className="flex items-center">
-                      <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="w-[64px] h-[64px] rounded-[8px] object-cover mr-4" />
-                      <div>
-                        <p className="paragraph font-bold truncate max-w-[120px] md:max-w-full xl:max-w-[100px] 2xl:max-w-full">{product.name}</p>
-                        <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
+              <div className="mt-[31px] space-y-6">
+                {cart.map((product, index) => {
+                  return (
+                    <div key={index} className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <img src={product.image.mobile} alt={`${product.name} ${product.category}`} className="w-[64px] h-[64px] rounded-[8px] object-cover mr-4" />
+                        <div>
+                          <p className="paragraph font-bold truncate max-w-[120px] md:max-w-full xl:max-w-[100px] 2xl:max-w-full">{product.name}</p>
+                          <p className="text-[14px] leading-[25px] font-bold text-black/50">$ {product.price.toLocaleString()}</p>
+                        </div>
                       </div>
+                      <p className="paragraph font-bold text-black/50">x{product.quantity}</p>
                     </div>
-                    <p className="paragraph font-bold text-black/50">x{product.quantity}</p>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
 
-            <div className="mt-8 mb-[47px]">
-              <div className="flex items-center justify-between mb-2">
-                <p className="paragraph font-medium text-black/50">TOTAL</p>
-                <p className="text-[18px] font-bold">$ {total.toLocaleString()}</p>
+              <div className="mt-8 mb-[47px]">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="paragraph font-medium text-black/50">TOTAL</p>
+                  <p className="text-[18px] font-bold">$ {total.toLocaleString()}</p>
+                </div>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="paragraph font-medium text-black/50">SHIPPING</p>
+                  <p className="text-[18px] font-bold">$ {shipping}</p>
+                </div>
+                <div className="flex items-center justify-between mb-6">
+                  <p className="paragraph font-medium text-black/50">TAXES (INCLUDED)</p>
+                  <p className="text-[18px] font-bold">$ {(tax * total).toLocaleString()}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="paragraph font-medium text-black/50">GRAND TOTAL</p>
+                  <p className="text-[18px] font-bold text-orange">$ {(total + shipping).toLocaleString()}</p>
+                </div>
               </div>
-              <div className="flex items-center justify-between mb-2">
-                <p className="paragraph font-medium text-black/50">SHIPPING</p>
-                <p className="text-[18px] font-bold">$ {shipping}</p>
-              </div>
-              <div className="flex items-center justify-between mb-6">
-                <p className="paragraph font-medium text-black/50">TAXES (INCLUDED)</p>
-                <p className="text-[18px] font-bold">$ {(tax * total).toLocaleString()}</p>
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="paragraph font-medium text-black/50">GRAND TOTAL</p>
-                <p className="text-[18px] font-bold text-orange">$ {(total + shipping).toLocaleString()}</p>
-              </div>
-            </div>
 
-            <button type="submit" className="cta cta-orange text-white block w-full text-center">
-              CONTINUE & PAY
-            </button>
-          </div>
-        </div>
+              <button type="submit" className="cta cta-orange text-white block w-full text-center">
+                CONTINUE & PAY
+              </button>
+            </div>
+          </form>
       </section>
     </div>
   );

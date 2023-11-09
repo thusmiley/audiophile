@@ -31,9 +31,9 @@ const Confirmation = (props) => {
             <p className="paragraph text-black/50">You will receive an email confirmation shortly.</p>
             <div className="mt-6 mb-[39px] md:flex md:items-center">
               <div
-                className={`flex  items-center justify-between bg-lightGrey rounded-t-[8px] p-6 md:rounded-t-[0px] md:w-[55%] md:rounded-tl-[8px] md:rounded-bl-[8px] ${
-                  expanded ? "md:h-[300px]" : "md:h-[156px]"
-                } ${cart.length >1 ? 'flex-col' : ''}`}
+                className={`flex  items-center justify-between bg-lightGrey rounded-t-[8px] p-6 md:rounded-t-[0px] md:w-[55%] md:rounded-tl-[8px] md:rounded-bl-[8px] md:h-[156px] ${
+                  expanded ? "md:overflow-y-scroll" : ""
+                } ${cart.length > 1 ? "flex-col" : ""}`}
               >
                 {cart?.slice(0, length).map((product, index) => {
                   return (
@@ -59,11 +59,7 @@ const Confirmation = (props) => {
                   </p>
                 )}
               </div>
-              <div
-                className={`bg-black rounded-b-[8px] p-6 flex flex-col justify-center md:rounded-b-[0px] md:w-[45%] md:rounded-r-[8px]  ${
-                  expanded ? "md:h-[300px] md:justify-end" : "md:h-[156px]"
-                }`}
-              >
+              <div className="bg-black rounded-b-[8px] p-6 flex flex-col justify-center md:rounded-b-[0px] md:w-[45%] md:rounded-r-[8px] md:h-[156px]">
                 <p className="paragraph font-bold text-white/50 mb-2">GRAND TOTAL</p>
                 <p className="text-[18px] font-bold text-white">$ {(total + shipping).toLocaleString()}</p>
               </div>
