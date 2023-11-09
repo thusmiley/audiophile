@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ModalContext } from "../components/modalContext";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useFormik} from "formik";
-import ScrollToFirstError from "../components/ScrollToFirstError";
+import { useForm } from "react-hook-form";
 
 const Checkout = (props) => {
   //   const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -18,98 +17,21 @@ const Checkout = (props) => {
   const tax = 0.05;
   const shipping = 50;
   const total = cart?.reduce((sum, product) => sum + product.price * product.quantity, 0);
+  const [payment, setPayment] = useState("");
 
-  const validate = (values) => {
-    const errors = {};
-    if (!values.name) {
-      errors.name = "Required";
-    } else if (values.name.length > 40) {
-      errors.name = "Must be 40 characters or less";
-    }
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm({ criteriaMode: "firstError", mode: "onChange", shouldFocusError: true });
 
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
+  const onSubmit = (data) => {
+    console.log(data);
+    if (cart.length > 0 && errors.length < 1) {
+      context.toggleModal("confirmation");
     }
-
-    if (!values.phone) {
-      errors.phone = "Required";
-    } else if (!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/g.test(values.phone)) {
-      errors.phone = "Invalid phone number";
-    }
-
-    if (!values.address) {
-      errors.address = "Required";
-    } else if (values.address.length < 10) {
-      errors.address = "Invalid address";
-    }
-
-    if (!values.zipcode) {
-      errors.zipcode = "Required";
-    } else if (!/^\s*?\d{5}(?:[-\s]\d{4})?\s*?$/.test(values.zipcode)) {
-      errors.zipcode = "Invalid zipcode";
-    }
-
-    if (!values.city) {
-      errors.city = "Required";
-    } else if (!/^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/.test(values.city)) {
-      errors.city = "Invalid city";
-    }
-
-    if (!values.country) {
-      errors.country = "Required";
-    } else if (!/[a-zA-Z]{2,}/.test(values.country)) {
-      errors.country = "Invalid country";
-    }
-
-    //validate visa, master card, amex, discovery card numbers respectively
-    if (!values.cardnum) {
-      errors.cardnum = "Required";
-    } else if (!/^(?:4[0-9]{12}(?:[0-9]{3})?)$|^(?:5[1-5][0-9]{14})$|^(?:3[47][0-9]{13})$|^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/.test(values.cardnum)) {
-      errors.cardnum = "Invalid card number";
-    }
-
-    if (!values.expirymonth) {
-      errors.expirymonth = "Required";
-    } else if (!/^01|02|03|04|05|06|07|08|09|10|11|12$/.test(values.expirymonth)) {
-      errors.expirymonth = "Invalid month";
-    }
-
-    if (!values.expiryyear) {
-      errors.expiryyear = "Required";
-    } else if (!/^(2[3-9])$/.test(values.expiryyear)) {
-      errors.expiryyear = "Invalid year";
-    }
-
-    if (!values.cvc) {
-      errors.cvc = "Required";
-    } else if (!/^[0-9]{3,4}$/.test(values.cvc)) {
-      errors.cvc = "Invalid number";
-    }
-    return errors;
   };
-
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      zipcode: "",
-      city: "",
-      country: "",
-      cardnum: "",
-      payment: "",
-      expirymonth: "",
-      expiryyear: "",
-      cvc: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
 
   return (
     <div className="pt-[90px] pb-[97px] bg-almostWhite relative">
@@ -120,8 +42,7 @@ const Checkout = (props) => {
 
         <div className="xl:flex xl:items-start xl:justify-between xl:space-x-[30px]">
           {/* checkout */}
-          <form autoComplete="on" onSubmit={formik.handleSubmit} className="xl:w-[65%]">
-            <ScrollToFirstError />
+          <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[65%]">
             <div className="mt-6 bg-white pt-6 py-[31px] px-6 rounded-[8px] md:p-8 xl:mt-[56px] xl:py-[54px] xl:px-[48px]">
               <h1 className="text-[28px] tracking-[1px] font-bold md:text-[32px] md:leading-[36px] md:tracking-[1.14px]">CHECKOUT</h1>
 
@@ -130,49 +51,55 @@ const Checkout = (props) => {
                 <h2 className="menu uppercase text-orange font-bold mt-8 mb-4 md:mt-[41px]">Billing details</h2>
 
                 <div className="space-y-6 md:grid md:grid-cols-2 md:space-y-0 md:gap-x-4 md:gap-y-6">
-                  <div className="form-input">
-                    <label htmlFor="name">Name</label>
+                  <div className="form-control">
+                    <label>Name</label>
                     <input
                       type="text"
                       name="name"
-                      id="name"
                       placeholder="Alexei Ward"
-                      required
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.name}
+                      {...register("name", {
+                        required: "Required",
+                        maxLength: {
+                          value: 40,
+                          message: "Must be 40 characters or less",
+                        },
+                      })}
                     />
-                    {formik.touched.name && formik.errors.name ? <div className="errorMsg">{formik.errors.name}</div> : null}
+                    {errors.name && <p className="errorMsg">{errors.name.message}</p>}
                   </div>
 
-                  <div className="form-input">
-                    <label htmlFor="email">Email Address</label>
+                  <div className="form-control">
+                    <label>Email Address</label>
                     <input
                       type="email"
                       name="email"
-                      id="email"
                       placeholder="alexei@mail.com"
-                      required
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.email}
+                      {...register("email", {
+                        required: "Required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "Invalid email address",
+                        },
+                      })}
                     />
-                    {formik.touched.email && formik.errors.email ? <div className="errorMsg">{formik.errors.email}</div> : null}
+                    {errors.email && <p className="errorMsg">{errors.email.message}</p>}
                   </div>
 
-                  <div className="form-input">
-                    <label htmlFor="phone">Phone Number</label>
+                  <div className="form-control">
+                    <label>Phone Number</label>
                     <input
                       type="tel"
                       name="phone"
-                      id="phone"
                       placeholder="+1 202-555-0136"
-                      required
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.phone}
+                      {...register("phone", {
+                        required: "Required",
+                        pattern: {
+                          value: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/g,
+                          message: "Invalid phone number",
+                        },
+                      })}
                     />
-                    {formik.touched.phone && formik.errors.phone ? <div className="errorMsg">{formik.errors.phone}</div> : null}
+                    {errors.phone && <p className="errorMsg">{errors.phone.message}</p>}
                   </div>
                 </div>
               </div>
@@ -182,56 +109,72 @@ const Checkout = (props) => {
                 <h2 className="menu uppercase text-orange font-bold mt-8 mb-4 md:mt-[53px]">Shipping info</h2>
 
                 <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-4 md:gap-y-6">
-                  <div className="form-input md:col-span-2">
-                    <label htmlFor="address">Your Address</label>
+                  <div className="form-control md:col-span-2">
+                    <label>Your Address</label>
                     <input
                       type="text"
                       name="address"
-                      id="address"
                       placeholder="1137 Williams Avenue"
-                      required
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.address}
+                      {...register("address", {
+                        required: "Required",
+                        minLength: {
+                          value: 10,
+                          message: "Must be 10 characters or more",
+                        },
+                      })}
                     />
-                    {formik.touched.address && formik.errors.address ? <div className="errorMsg">{formik.errors.address}</div> : null}
+                    {errors.address && <p className="errorMsg">{errors.address.message}</p>}
                   </div>
 
-                  <div className="form-input">
-                    <label htmlFor="zipcode">ZIP Code</label>
+                  <div className="form-control">
+                    <label>ZIP Code</label>
                     <input
                       type="number"
                       name="zipcode"
-                      id="zipcode"
-                      maxLength="5"
                       placeholder="10001"
-                      required
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.zipcode}
+                      {...register("zipcode", {
+                        required: "Required",
+                        pattern: {
+                          value: /^\s*?\d{5}(?:[-\s]\d{4})?\s*?$/,
+                          message: "Invalid zipcode",
+                        },
+                      })}
                     />
-                    {formik.touched.zipcode && formik.errors.zipcode ? <div className="errorMsg">{formik.errors.zipcode}</div> : null}
+                    {errors.zipcode && <p className="errorMsg">{errors.zipcode.message}</p>}
                   </div>
 
-                  <div className="form-input">
-                    <label htmlFor="city">City</label>
-                    <input type="text" name="city" id="city" placeholder="New York" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.city} />
-                    {formik.touched.city && formik.errors.city ? <div className="errorMsg">{formik.errors.city}</div> : null}
+                  <div className="form-control">
+                    <label>City</label>
+                    <input
+                      type="text"
+                      name="city"
+                      placeholder="New York"
+                      {...register("city", {
+                        required: "Required",
+                        pattern: {
+                          value: /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
+                          message: "Invalid city",
+                        },
+                      })}
+                    />
+                    {errors.city && <p className="errorMsg">{errors.city.message}</p>}
                   </div>
 
-                  <div className="form-input">
-                    <label htmlFor="country">Country</label>
+                  <div className="form-control">
+                    <label>Country</label>
                     <input
                       type="text"
                       name="country"
-                      id="country"
                       placeholder="United States"
-                      required
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.country}
+                      {...register("country", {
+                        required: "Required",
+                        pattern: {
+                          value: /[a-zA-Z]{2,}/,
+                          message: "Invalid country",
+                        },
+                      })}
                     />
-                    {formik.touched.country && formik.errors.country ? <div className="errorMsg">{formik.errors.country}</div> : null}
+                    {errors.country && <p className="errorMsg">{errors.country.message}</p>}
                   </div>
                 </div>
               </div>
@@ -246,19 +189,27 @@ const Checkout = (props) => {
                     <p className="text-[12px] tracking-[-0.21px] font-bold">Payment Method</p>
                     <div className="mt-[17px] space-y-4 md:mt-0 md:w-1/2">
                       <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange md:ml-2">
-                        <input type="radio" name="payment" id="creditcard" onChange={formik.handleChange} onBlur={formik.handleBlur} value="creditcard" required />
-                        <label htmlFor="creditcard">Credit Card</label>
+                        <input
+                          type="radio"
+                          value="card"
+                          {...register("payment", {
+                            required: "Required",
+                          })}
+                          onChange={() => setPayment("card")}
+                        />
+                        <label>Credit Card</label>
                       </div>
 
                       <div className="flex justify-start items-center border-[1px] border-[#cfcfcf] rounded-[8px] py-[18px] px-6 hover:border-orange  md:ml-2">
-                        <input type="radio" name="payment" id="cod" onChange={formik.handleChange} onBlur={formik.handleBlur} value="cod" />
-                        <label htmlFor="cod">Cash on Delivery</label>
+                        <input type="radio" value="cash" {...register("payment")} onChange={() => setPayment("cash")} />
+                        <label>Cash on Delivery</label>
                       </div>
+                      {errors.payment && <p className="errorMsg">{errors.payment.message}</p>}
                     </div>
                   </div>
 
                   {/* cash on delivery group */}
-                  {formik.values.payment === "cod" && (
+                  {payment === "cash" && (
                     <div className="flex justify-center items-center">
                       <img src={codIcon} alt="" className="w-[48px] h-[48px] object-contain mr-6" />
                       <p className="paragraph text-black/50">
@@ -269,60 +220,73 @@ const Checkout = (props) => {
                   )}
 
                   {/* credit card group */}
-                  {formik.values.payment === "creditcard" && (
+                  {payment === "card" && (
                     <div className="space-y-6 md:flex md:space-y-0 md:space-x-4">
                       <div className="md:w-1/2">
-                        <label htmlFor="cardnum">Card Number</label>
+                        <label>Card Number</label>
                         <input
-                          type="tel"
+                          type="number"
                           name="cardnum"
-                          id="cardnum"
                           placeholder="0000 0000 0000 0000"
-                          required
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          value={formik.values.cardnum}
+                          {...register("cardnum", {
+                            required: "Required",
+                            pattern: {
+                              value: /^(?:4[0-9]{12}(?:[0-9]{3})?)$|^(?:5[1-5][0-9]{14})$|^(?:3[47][0-9]{13})$|^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/,
+                              message: "Invalid card number",
+                            },
+                          })}
                         />
-                        {formik.touched.cardnum && formik.errors.cardnum ? <div className="errorMsg">{formik.errors.cardnum}</div> : null}
+                        {errors.cardnum && <p className="errorMsg">{errors.cardnum.message}</p>}
                       </div>
 
                       <div className="flex items-end space-x-4 md:w-1/2 xl:space-x-2 2xl:space-x-4">
                         <div className="w-[65%]">
-                          <label htmlFor="expirymonth">Expiry Date (MM/YY)</label>
+                          <label>Expiry Date (MM/YY)</label>
                           <div className="flex space-x-4 xl:space-x-2 2xl:space-x-4">
                             <input
                               type="number"
                               name="expirymonth"
-                              id="expirymonth"
                               placeholder="MM"
-                              minLength={2}
-                              maxLength={2}
-                              required
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              value={formik.values.expirymonth}
+                              {...register("expirymonth", {
+                                required: "Required",
+                                pattern: {
+                                  value: /^01|02|03|04|05|06|07|08|09|10|11|12$/,
+                                  message: "Invalid month",
+                                },
+                              })}
                             />
-                            {formik.touched.expirymonth && formik.errors.expirymonth ? <div className="errorMsg">{formik.errors.expirymonth}</div> : null}
+                            {errors.expirymonth && <p className="errorMsg">{errors.expirymonth.message}</p>}
                             <input
                               type="number"
                               name="expiryyear"
-                              id="expiryyear"
                               placeholder="YY"
-                              minLength={2}
-                              maxLength={2}
-                              required
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              value={formik.values.expiryyear}
+                              {...register("expiryyear", {
+                                required: "Required",
+                                pattern: {
+                                  value: /^(2[3-9])$/,
+                                  message: "Invalid year",
+                                },
+                              })}
                             />
-                            {formik.touched.expiryyear && formik.errors.expiryyear ? <div className="errorMsg">{formik.errors.expiryyear}</div> : null}
+                            {errors.expiryyear && <p className="errorMsg">{errors.expiryyear.message}</p>}
                           </div>
                         </div>
 
                         <div className="w-[35%]">
-                          <label htmlFor="cvc">CVC</label>
-                          <input type="number" name="cvc" id="cvc" placeholder="000" required onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.cvc} />
-                          {formik.touched.cvc && formik.errors.cvc ? <div className="errorMsg">{formik.errors.cvc}</div> : null}
+                          <label>CVC</label>
+                          <input
+                            type="number"
+                            name="cvc"
+                            placeholder="000"
+                            {...register("cvc", {
+                              required: "Required",
+                              pattern: {
+                                value: /^[0-9]{3,4}$/,
+                                message: "Invalid number",
+                              },
+                            })}
+                          />
+                          {errors.cvc && <p className="errorMsg">{errors.cvc.message}</p>}
                         </div>
                       </div>
                     </div>
@@ -372,13 +336,7 @@ const Checkout = (props) => {
               </div>
             </div>
 
-            <button
-              type="submit"
-              className="cta cta-orange text-white block w-full text-center"
-              onClick={
-                (formik.values.payment === "creditcard" || formik.values.payment === "cod") && formik.isValid && formik.dirty ? () => context.toggleModal("confirmation") : null
-              }
-            >
+            <button type="submit" className="cta cta-orange text-white block w-full text-center">
               CONTINUE & PAY
             </button>
           </div>
