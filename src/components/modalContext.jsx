@@ -15,9 +15,13 @@ const ModalProvider = (props) => {
     }
   };
 
+  const toggleOff = (modal) => {
+    setShow({[modal]: false });
+  };
+
   return (
     <div>
-      <ModalContext.Provider value={{ show, toggleModal, keyHideModal }}>{props.children}</ModalContext.Provider>
+      <ModalContext.Provider value={{ show, toggleModal, keyHideModal, toggleOff }}>{props.children}</ModalContext.Provider>
     </div>
   );
 };
