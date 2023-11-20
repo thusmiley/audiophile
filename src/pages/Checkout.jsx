@@ -70,7 +70,7 @@ const Checkout = (props) => {
                     <input
                       type="email"
                       name="email"
-                      placeholder="alexei@mail.com"
+                      placeholder="alexei@gmail.com"
                       {...register("email", {
                         required: "Required",
                         pattern: {
@@ -87,7 +87,7 @@ const Checkout = (props) => {
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="+1 202-555-0136"
+                      placeholder="202-555-0136"
                       {...register("phone", {
                         required: "Required",
                         pattern: {

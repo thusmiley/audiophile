@@ -26,9 +26,6 @@
   a {
     -webkit-tap-highlight-color: transparent;
   }
-  .heading1, .heading2, .heading3, .heading4, .heading5, .heading6, a {
-    @apply font-bold;
-  }
   .heading1 {
     font-size: 36px;
     line-height: 40px;
