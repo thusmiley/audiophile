@@ -1,4 +1,4 @@
-import arrow from "../../public/images/shared/desktop/icon-arrow-right.svg";
+import arrow from "../images/shared/desktop/icon-arrow-right.svg";
 import { Link } from "react-router-dom";
 
 const CategoryCard = (props) => {

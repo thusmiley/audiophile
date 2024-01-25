@@ -72,6 +72,7 @@
     font-size: 13px;
     line-height: 25px;
     letter-spacing: 2px;
+    @apply hover:text-orange font-bold;
   }
   .paragraph {
     font-size: 15px;
@@ -95,9 +96,6 @@
   }
   .cta-transparent {
     @apply bg-transparent border-[1px] border-black  text-black hover:bg-black hover:text-white;
-  }
-  .menu {
-    @apply hover:text-orange active:text-orange;
   }
   .socials svg:hover path {
     fill: #D87D4A;
@@ -191,6 +189,17 @@
       opacity: 100;
     }
   }
+  .slideup {
+    animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide-top {
+    0% {
+      transform: translateY(100px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
   .gallery-grid {
     display: grid;
     grid-template-areas: "firstImg thirdImg" "secondImg thirdImg";
@@ -205,50 +214,50 @@
     grid-area: thirdImg;
   }
   .home-hero-bg {
-    background: url("/public/images/home/mobile/image-header.jpg") no-repeat center center;
+    background: url("/src/images/home/mobile/image-header.jpg") no-repeat center center;
     background-size: cover;
   }
   @screen md {
     .home-hero-bg {
-      background: url("/public/images/home/tablet/image-header.jpg") no-repeat center center;
+      background: url("/src/images/home/tablet/image-header.jpg") no-repeat center center;
       background-size: cover;
     }
   }
   @screen lg {
     .home-hero-bg {
-      background: url("/public/images/home/tablet/image-header.jpg") no-repeat center center;
+      background: url("/src/images/home/tablet/image-header.jpg") no-repeat center center;
       background-size: cover;
     }
   }
   @screen xl {
     .home-hero-bg {
-      background: url("/public/images/home/desktop/image-hero.jpg") no-repeat center center;
+      background: url("/src/images/home/desktop/image-hero.jpg") no-repeat center center;
       background-size: cover;
     }
   }
   .zx9-bg {
-    background: #D87D4A url("/public/images/home/desktop/pattern-circles.svg") no-repeat center top -110px;
+    background: #D87D4A url("/src/images/home/desktop/pattern-circles.svg") no-repeat center top -110px;
     background-size: cover;
   }
   @screen md {
     .zx9-bg {
-      background: #D87D4A url("/public/images/home/desktop/pattern-circles.svg") no-repeat center top -180px;
+      background: #D87D4A url("/src/images/home/desktop/pattern-circles.svg") no-repeat center top -180px;
       background-size: cover;
     }
   }
   @screen xl {
     .zx9-bg {
-      background: #D87D4A url("/public/images/home/desktop/pattern-circles.svg") no-repeat left -300px bottom -500px;
+      background: #D87D4A url("/src/images/home/desktop/pattern-circles.svg") no-repeat left -300px bottom -500px;
       background-size: cover;
     }
   }
   .zx7-bg {
-    background: #D87D4A url("/public/images/home/mobile/image-speaker-zx7.jpg") no-repeat bottom right;
+    background: #D87D4A url("/src/images/home/mobile/image-speaker-zx7.jpg") no-repeat bottom right;
     background-size: cover;
   }
   @screen md {
     .zx7-bg {
-      background: #D87D4A url("/public/images/home/tablet/image-speaker-zx7.jpg") no-repeat bottom right;
+      background: #D87D4A url("/src/images/home/tablet/image-speaker-zx7.jpg") no-repeat bottom right;
       background-size: cover;
     }
   }

@@ -1,26 +1,48 @@
-import logo from "../../public/images/shared/desktop/logo.svg";
+import logo from "../images/shared/desktop/logo.svg";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const pathname = window.location.pathname;
+
   return (
     <footer className="bg-black text-white text-center pt-[52px] pb-[38px] md:pt-[60px] md:pb-[46px] md:text-left xl:pt-[75px]">
       <div className="container px-6 mx-auto relative md:px-10 xl:px-[165px]">
         <div className="h-1 w-[101px] mx-auto bg-orange mt-[-52px] md:float-left md:mt-[-60px] xl:mt-[-75px]" />
         <div className="mt-[52px] md:mt-0 xl:flex xl:justify-between xl:items-center xl:mb-9">
           <a href="/">
-            <img src={logo} alt="logo" className="object-contain object-center w-full h-[25px] md:object-left" />
+            <img
+              src={logo}
+              alt="logo"
+              className="object-contain object-center w-full h-[25px] md:object-left"
+            />
           </a>
           <div className="my-12 space-y-4 flex flex-col justify-center md:flex-row md:justify-start md:items-center md:space-y-0 md:space-x-[34px] md:my-8 xl:my-0">
-            <Link to="/" className="menu">
+            <Link
+              to="/"
+              className={`${pathname == "/" ? "text-orange" : ""} menu`}
+            >
               HOME
             </Link>
-            <Link to="/headphones" className="menu">
+            <Link
+              to="/headphones"
+              className={`${
+                pathname == "/headphones" ? "text-orange" : ""
+              } menu`}
+            >
               HEADPHONES
             </Link>
-            <Link to="/speakers" className="menu">
+            <Link
+              to="/speakers"
+              className={`${pathname == "/speakers" ? "text-orange" : ""} menu`}
+            >
               SPEAKERS
             </Link>
-            <Link to="/earphones" className="menu">
+            <Link
+              to="/earphones"
+              className={`${
+                pathname == "/earphones" ? "text-orange" : ""
+              } menu`}
+            >
               EARPHONES
             </Link>
           </div>
@@ -28,10 +50,14 @@ const Footer = () => {
 
         <div className="xl:max-w-[540px]">
           <p className="paragraph text-white/50">
-            Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers and sound specialists who are devoted to helping you get the most out
-            of personal audio. Come and visit our demo facility - we’re open 7 days a week.
+            Audiophile is an all in one stop to fulfill your audio needs. We're
+            a small team of music lovers and sound specialists who are devoted
+            to helping you get the most out of personal audio. Come and visit
+            our demo facility - we’re open 7 days a week.
           </p>
-          <p className="paragraph text-white/50 font-bold my-12 md:mt-20 md:mb-0 xl:mt-[56px]">Copyright 2021. All Rights Reserved</p>
+          <p className="paragraph text-white/50 font-bold my-12 md:mt-20 md:mb-0 xl:mt-[56px]">
+            Copyright 2021. All Rights Reserved
+          </p>
         </div>
 
         <div className="socials flex justify-center items-center space-x-4 md:float-right md:mt-[-30px]">

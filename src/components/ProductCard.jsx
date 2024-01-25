@@ -15,7 +15,7 @@ const ProductCard = (props) => {
           <source media="(max-width: 680px)" srcSet={product.categoryImage?.mobile} />
           <source media="(max-width: 768px)" srcSet={product.categoryImage?.tablet} />
           <source media="(min-width: 769px)" srcSet={product.categoryImage?.desktop} />
-          <img src={product.categoryImage?.mobile} className={`${detailPage ? "md:h-full" : ""} h-[350px] w-full object-contain object-center xl:h-full`} />
+          <img src={product.categoryImage?.mobile} className={`${detailPage ? "md:h-full" : ""} h-[350px] w-full object-cover object-center xl:h-full`} />
         </picture>
       </div>
 

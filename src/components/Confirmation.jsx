@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import check from "../../public/images/checkout/icon-order-confirmation.svg";
+import check from "../images/checkout/icon-order-confirmation.svg";
 import { ModalContext } from "./modalContext";
 import Button from "./Button";
 

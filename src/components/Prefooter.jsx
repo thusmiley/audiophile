@@ -1,6 +1,6 @@
-import bestgearMobile from "../../public/images/shared/mobile/image-best-gear.jpg";
-import bestgearTablet from "../../public/images/shared/tablet/image-best-gear.jpg";
-import bestgearDesktop from "../../public/images/shared/desktop/image-best-gear.jpg";
+import bestgearMobile from "../images/shared/mobile/image-best-gear.jpg";
+import bestgearTablet from "../images/shared/tablet/image-best-gear.jpg";
+import bestgearDesktop from "../images/shared/desktop/image-best-gear.jpg";
 
 const Prefooter = () => {
   return (
