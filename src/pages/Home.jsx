@@ -1,10 +1,10 @@
 import CategoryCards from "../components/CategoryCards";
-import zx9Mobile from "../images/home/mobile/image-speaker-zx9.png";
-import zx9Tablet from "../images/home/tablet/image-speaker-zx9.png";
-import zx9Desktop from "../images/home/desktop/image-speaker-zx9.png";
-import yx1Mobile from "../images/home/mobile/image-earphones-yx1.jpg";
-import yx1Tablet from "../images/home/tablet/image-earphones-yx1.jpg";
-import yx1Desktop from "../images/home/desktop/image-earphones-yx1.jpg";
+import zx9Mobile from "/images/home/mobile/image-speaker-zx9.png";
+import zx9Tablet from "/images/home/tablet/image-speaker-zx9.png";
+import zx9Desktop from "/images/home/desktop/image-speaker-zx9.png";
+import yx1Mobile from "/images/home/mobile/image-earphones-yx1.jpg";
+import yx1Tablet from "/images/home/tablet/image-earphones-yx1.jpg";
+import yx1Desktop from "/images/home/desktop/image-earphones-yx1.jpg";
 import Prefooter from "../components/Prefooter";
 import { Link } from "react-router-dom";
 

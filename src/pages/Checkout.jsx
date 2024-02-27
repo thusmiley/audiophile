@@ -1,4 +1,4 @@
-import codIcon from "../images/checkout/icon-cash-on-delivery.svg";
+import codIcon from "/images/checkout/icon-cash-on-delivery.svg";
 import { React, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ModalContext } from "../components/modalContext";

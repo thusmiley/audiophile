@@ -1,6 +1,6 @@
-import earphones from "../images/shared/desktop/image-category-thumbnail-earphones.png";
-import headphones from "../images/shared/desktop/image-category-thumbnail-headphones.png";
-import speakers from "../images/shared/desktop/image-category-thumbnail-speakers.png";
+import earphones from "/images/shared/desktop/image-category-thumbnail-earphones.png";
+import headphones from "/images/shared/desktop/image-category-thumbnail-headphones.png";
+import speakers from "/images/shared/desktop/image-category-thumbnail-speakers.png";
 import CategoryCard from "./CategoryCard";
 
 const CategoryCards = () => {

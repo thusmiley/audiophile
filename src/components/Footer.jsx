@@ -1,4 +1,4 @@
-import logo from "../images/shared/desktop/logo.svg";
+import logo from "/images/shared/desktop/logo.svg";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import logo from "../images/shared/desktop/logo.svg";
-import menu from "../images/shared/tablet/icon-hamburger.svg";
-import cartIcon from "../images/shared/desktop/icon-cart.svg";
+import logo from "/images/shared/desktop/logo.svg";
+import menu from "/images/shared/tablet/icon-hamburger.svg";
+import cartIcon from "/images/shared/desktop/icon-cart.svg";
 import CategoryCards from "../components/CategoryCards";
 import { ModalContext } from "./modalContext";
 import { NavLink, Link } from "react-router-dom";
