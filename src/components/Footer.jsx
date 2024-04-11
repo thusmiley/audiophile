@@ -1,6 +1,5 @@
 import logo from "/images/shared/desktop/logo.svg";
-import { Link } from "react-router-dom";
-
+import { NavLink, Link } from "react-router-dom";
 const Footer = () => {
   const pathname = window.location.pathname;
 
@@ -16,39 +15,39 @@ const Footer = () => {
               className="object-contain object-center w-full h-[25px] md:object-left"
             />
           </a>
-          <div className="my-12 space-y-4 flex flex-col justify-center md:flex-row md:justify-start md:items-center md:space-y-0 md:space-x-[34px] md:my-8 xl:my-0">
-            <Link
+          {/* <div className="my-12 space-y-4 flex flex-col justify-center md:flex-row md:justify-start md:items-center md:space-y-0 md:space-x-[34px] md:my-8 xl:my-0">
+            <NavLink
               to="/"
               className={`${pathname == "/" ? "text-orange" : ""} menu`}
             >
               HOME
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/headphones"
               className={`${
                 pathname == "/headphones" ? "text-orange" : ""
               } menu`}
             >
               HEADPHONES
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/speakers"
               className={`${pathname == "/speakers" ? "text-orange" : ""} menu`}
             >
               SPEAKERS
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/earphones"
               className={`${
                 pathname == "/earphones" ? "text-orange" : ""
               } menu`}
             >
               EARPHONES
-            </Link>
-          </div>
+            </NavLink>
+          </div> */}
         </div>
 
-        <div className="xl:max-w-[540px]">
+        <div className="mt-12 xl:max-w-[540px]">
           <p className="paragraph text-white/50">
             Audiophile is an all in one stop to fulfill your audio needs. We're
             a small team of music lovers and sound specialists who are devoted

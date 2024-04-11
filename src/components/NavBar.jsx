@@ -29,7 +29,6 @@ const NavBar = (props) => {
         />
         <Link
           to="/"
-          className={pathname == "/" ? "text-orange" : ""}
           onClick={removeModals}
         >
           <img
